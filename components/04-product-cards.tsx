@@ -163,10 +163,12 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
         y: springY,
         scale: springScale,
       }}
-      className={`relative w-full ${index % 2 === 0 ? "lg:translate-y-32" : ""}`}
+      className={`relative w-full ${
+        index % 2 === 0 ? "lg:translate-y-32" : ""
+      }`}
     >
       <Card
-        className={`group relative overflow-hidden backdrop-blur-sm bg-white/90 border-0 shadow-xl hover:shadow-2xl transition-all duration-500`}
+        className={`group relative overflow-hidden backdrop-blur-sm bg-[#E6F1FD] border-0 shadow-xl hover:shadow-2xl transition-all duration-500`}
       >
         <div className="relative p-4 md:p-6">
           <Badge
@@ -181,18 +183,27 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
               <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-violet-600">
                 {product.title}
               </h3>
-              <p className="text-sm md:text-base lg:text-lg text-gray-600 mb-4">{product.description}</p>
+              <p className="text-sm md:text-base lg:text-lg text-gray-600 mb-4">
+                {product.description}
+              </p>
 
               <div className="grid grid-cols-3 gap-2 md:gap-4 mb-6">
                 {product.stats.map((stat, i) => {
-                  const Icon = stat.icon
+                  const Icon = stat.icon;
                   return (
-                    <div key={i} className="text-center p-2 bg-gray-50 rounded-lg">
+                    <div
+                      key={i}
+                      className="text-center p-2 bg-gray-50 rounded-lg"
+                    >
                       <Icon className="w-4 h-4 md:w-6 md:h-6 mx-auto mb-1 md:mb-2 text-blue-500" />
-                      <div className="text-lg md:text-2xl font-bold text-blue-600">{stat.value}</div>
-                      <div className="text-xs md:text-sm text-gray-500">{stat.label}</div>
+                      <div className="text-lg md:text-2xl font-bold text-blue-600">
+                        {stat.value}
+                      </div>
+                      <div className="text-xs md:text-sm text-gray-500">
+                        {stat.label}
+                      </div>
                     </div>
-                  )
+                  );
                 })}
               </div>
 
@@ -255,7 +266,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
         </div>
       </Card>
     </motion.div>
-  )
+  );
 }
 
 export function ProductCards({ }: ProductCardsProps) {
