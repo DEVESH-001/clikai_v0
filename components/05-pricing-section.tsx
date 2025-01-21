@@ -1,3 +1,4 @@
+//chnages to make switch and slider
 "use client";
 
 import * as React from "react";
