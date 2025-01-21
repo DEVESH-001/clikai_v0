@@ -110,18 +110,18 @@ const products = [
 ]
 
 interface Product {
-  title: string;
-  badge: string;
-  description: string;
-  features: string[];
-  stats: { label: string; value: string; icon: React.ElementType }[];
-  useCases: string[];
-  image: string;
-  link: string;
-  theme: string;
+  title: string
+  badge: string
+  description: string
+  features: string[]
+  stats: { label: string, value: string, icon: React.ComponentType }[]
+  useCases: string[]
+  image: string
+  link: string
+  theme: string
 }
 
-function ProductCard({ product, index }: { product: Product; index: number }) {
+function ProductCard({ product, index }: { product: Product, index: number }) {
   const cardRef = useRef(null)
   const controls = useAnimation()
   const [isVisible, setIsVisible] = useState(false)
@@ -163,17 +163,14 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
         y: springY,
         scale: springScale,
       }}
-      className={`relative w-full ${
-        index % 2 === 0 ? "lg:translate-y-32" : ""
-      }`}
+      className={`relative w-full ${index % 2 === 0 ? "lg:translate-y-32" : ""}`}
     >
       <Card
-        className={`group relative overflow-hidden backdrop-blur-sm bg-[#E6F1FD] border-0 shadow-xl hover:shadow-2xl transition-all duration-500`}
+        className={`group relative overflow-hidden backdrop-blur-sm bg-gradient-to-br from-white to-blue-100 border-0 shadow-xl hover:shadow-2xl transition-all duration-500`}
       >
         <div className="relative p-4 md:p-6">
           <Badge
-            variant="secondary"
-            className={`absolute top-4 right-4 bg-${product.theme}-100 text-${product.theme}-800 border-${product.theme}-200 text-sm font-semibold px-3 py-1.5 rounded-full shadow-md`}
+            className={`absolute top-4 right-4 bg-blue-200 text-blue-800 border-blue-300 text-sm font-semibold px-3 py-1.5 rounded-full shadow-md`}
           >
             {product.badge}
           </Badge>
@@ -183,27 +180,19 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
               <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-violet-600">
                 {product.title}
               </h3>
-              <p className="text-sm md:text-base lg:text-lg text-gray-600 mb-4">
-                {product.description}
-              </p>
+              <p className="text-sm md:text-base lg:text-lg text-gray-600 mb-4">{product.description}</p>
 
               <div className="grid grid-cols-3 gap-2 md:gap-4 mb-6">
                 {product.stats.map((stat, i) => {
-                  const Icon = stat.icon;
+                  const Icon = stat.icon
                   return (
-                    <div
-                      key={i}
-                      className="text-center p-2 bg-gray-50 rounded-lg"
-                    >
-                      <Icon className="w-4 h-4 md:w-6 md:h-6 mx-auto mb-1 md:mb-2 text-blue-500" />
-                      <div className="text-lg md:text-2xl font-bold text-blue-600">
-                        {stat.value}
-                      </div>
-                      <div className="text-xs md:text-sm text-gray-500">
-                        {stat.label}
-                      </div>
+                    <div key={i} className="text-center p-2 bg-white/60 rounded-lg backdrop-blur-sm">
+                      
+                      <Icon />
+                      <div className="text-lg md:text-2xl font-bold text-blue-600">{stat.value}</div>
+                      <div className="text-xs md:text-sm text-gray-500">{stat.label}</div>
                     </div>
-                  );
+                  )
                 })}
               </div>
 
@@ -239,10 +228,10 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                 ))}
               </ul>
 
-              <Button className="w-full group relative overflow-hidden bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 text-sm md:text-base ">
+              <Button className="w-full group relative overflow-hidden bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 text-sm md:text-base">
                 Explore {product.title}
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 "  />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
               </Button>
             </div>
 
@@ -266,7 +255,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
         </div>
       </Card>
     </motion.div>
-  );
+  )
 }
 
 export function ProductCards({ }: ProductCardsProps) {
@@ -302,7 +291,7 @@ export function ProductCards({ }: ProductCardsProps) {
           </motion.p>
         </div>
 
-        <div className="space-y-8 md:space-y-12 lg:space-y-16 ">
+        <div className="space-y-8 md:space-y-12 lg:space-y-16">
           {products.map((product, index) => (
             <ProductCard key={product.title} product={product} index={index} />
           ))}

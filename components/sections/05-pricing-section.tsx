@@ -1,4 +1,3 @@
-
 "use client";
 
 import * as React from "react";
@@ -6,7 +5,7 @@ import { Slider } from "@/components/ui/slider";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Check,  X} from "lucide-react";
+import { Check, X } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -517,4 +516,3 @@ export function PricingSection() {
     </section>
   );
 }
-

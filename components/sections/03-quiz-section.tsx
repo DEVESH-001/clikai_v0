@@ -49,7 +49,7 @@ const questions = [
 const getRecommendedProduct = (answers: Record<number, string>) => {
   const role = answers[1]
   const primaryGoal = answers[2]
-  // const dealsPerMonth = answers[3]
+
   const assetClass = answers[4]
   const automation = answers[5]
 
@@ -263,7 +263,7 @@ export function QuizSection({ onProductRecommended }: QuizSectionProps) {
                   <Button variant="outline" onClick={resetQuiz} className="text-sm md:text-base">
                     Start Over
                   </Button>
-                  <Button className="text-sm md:text-base bg-black text-white hover:bg-slate-800 hover:text-white">Learn More</Button>
+                  <Button className="text-sm md:text-base">Learn More</Button>
                 </div>
               </motion.div>
             )}

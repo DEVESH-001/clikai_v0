@@ -1,3 +1,16 @@
+/**
+ * Footer Component
+ *
+ * This component renders the main footer for the Clik.ai website.
+ * It includes various sections such as company information, newsletter signup,
+ * product and service links, and legal information.
+ *
+ * Features:
+ * - Responsive layout
+ * - Newsletter signup form
+ * - Grouped links for easy navigation
+ */
+
 "use client"
 
 

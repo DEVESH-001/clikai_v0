@@ -1,28 +1,29 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import Image from "next/image"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import * as React from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-import { GeistSans } from "geist/font/sans"
-import { imageUrls } from "@/utils/imageUrls"
+import { GeistSans } from "geist/font/sans";
+import { imageUrls } from "@/utils/imageUrls";
 
 interface Testimonial {
-  id: number
-  content: string
-  author: string
-  role: string
-  company: string
-  image: string
-  highlight?: string
+  id: number;
+  content: string;
+  author: string;
+  role: string;
+  company: string;
+  image: string;
+  highlight?: string;
 }
 
 const testimonials: Testimonial[] = [
   {
     id: 1,
     highlight: "enables us to process more deals",
-    content: "ClikAI enables us to process more deals, allowing us to focus more time on customers.",
+    content:
+      "ClikAI enables us to process more deals, allowing us to focus more time on customers.",
     author: "Eric Tupta",
     role: "Director of Digital Transformation",
     company: "Bellwether Real Estate Capital",
@@ -40,7 +41,8 @@ const testimonials: Testimonial[] = [
   },
   {
     id: 3,
-    highlight: "make more sophisticated investment decisions, in a fraction of the time",
+    highlight:
+      "make more sophisticated investment decisions, in a fraction of the time",
     content:
       "Integrating into our underwriting process has allowed our deal team to make more sophisticated investment decisions, in a fraction of the time! The software does a tremendous job of quickly integrating the financials (T12, RR) into a simple, easy to read model and actually goes a step further by mapping it directly into our internal, robust model. Completing proformas and presenting returns to partners is now done all the more confidentially with the leverage of Clik's technology.",
     author: "Jeremy Cisneros",
@@ -60,7 +62,8 @@ const testimonials: Testimonial[] = [
   },
   {
     id: 5,
-    highlight: "phenomenal tool in underwriting and pricing commercial real estate deals",
+    highlight:
+      "phenomenal tool in underwriting and pricing commercial real estate deals",
     content:
       "ClikAi team have created a phenomenal tool in underwriting and pricing commercial real estate deals. The software makes the underwriting process seamless.",
     author: "James Vestal",
@@ -88,7 +91,7 @@ const testimonials: Testimonial[] = [
     company: "Lima One Capital",
     image: imageUrls.testimonials.christianGroomes,
   },
-]
+];
 
 const companies = [
   "Bellwether Real Estate Capital",
@@ -98,29 +101,31 @@ const companies = [
   "Verdad Commercial Real Estate Companies",
   "Moneil Investment Group LLC",
   "Lima One Capital",
-]
+];
 
 export function TestimonialsSection() {
-  const [currentIndex, setCurrentIndex] = React.useState(0)
-  const [isPaused, setIsPaused] = React.useState(false)
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [isPaused, setIsPaused] = React.useState(false);
 
   React.useEffect(() => {
     if (!isPaused) {
       const interval = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length)
-      }, 10000) // 10 seconds
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+      }, 10000); // 10 seconds
 
-      return () => clearInterval(interval)
+      return () => clearInterval(interval);
     }
-  }, [isPaused])
+  }, [isPaused]);
 
   const handlePrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1))
-  }
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
+    );
+  };
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length)
-  }
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+  };
 
   return (
     <section
@@ -133,7 +138,11 @@ export function TestimonialsSection() {
           Impact stories from our clients
         </h2>
 
-        <div className="relative" onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
+        <div
+          className="relative"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
           {/* Navigation Buttons */}
           <button
             onClick={handlePrevious}
@@ -171,13 +180,23 @@ export function TestimonialsSection() {
 
               <div className="flex flex-col justify-center">
                 <blockquote className="text-2xl font-medium mb-6 text-gray-900">
-                  <span className="text-blue-600">The {testimonials[currentIndex].highlight}</span>
+                  <span className="text-blue-600">
+                    The {testimonials[currentIndex].highlight}
+                  </span>
                 </blockquote>
-                <p className="text-lg text-gray-600 mb-8">&quot;{testimonials[currentIndex].content}&quot;</p>
+                <p className="text-lg text-gray-600 mb-8">
+                  &quot;{testimonials[currentIndex].content}&quot;
+                </p>
                 <div>
-                  <p className="font-semibold text-gray-900">{testimonials[currentIndex].author}</p>
-                  <p className="text-gray-600">{testimonials[currentIndex].role}</p>
-                  <p className="text-gray-600">{testimonials[currentIndex].company}</p>
+                  <p className="font-semibold text-gray-900">
+                    {testimonials[currentIndex].author}
+                  </p>
+                  <p className="text-gray-600">
+                    {testimonials[currentIndex].role}
+                  </p>
+                  <p className="text-gray-600">
+                    {testimonials[currentIndex].company}
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -188,7 +207,9 @@ export function TestimonialsSection() {
             <div className="flex flex-wrap justify-center items-center gap-4">
               {companies.map((company) => {
                 // Find the first testimonial for this company
-                const testimonialIndex = testimonials.findIndex((t) => t.company === company)
+                const testimonialIndex = testimonials.findIndex(
+                  (t) => t.company === company
+                );
                 return (
                   <button
                     key={company}
@@ -201,13 +222,12 @@ export function TestimonialsSection() {
                   >
                     {company}
                   </button>
-                )
+                );
               })}
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
-

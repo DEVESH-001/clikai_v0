@@ -1,11 +1,21 @@
-"use client"
+"use client";
 
-import React, { useState, useRef } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Building2, BarChart2, FileText, Zap, Plus, Minus, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react"
-import { GeistSans } from "geist/font/sans"
+import React, { useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  Building2,
+  BarChart2,
+  FileText,
+  Zap,
+  Plus,
+  Minus,
+  ChevronLeft,
+  ChevronRight,
+  ArrowRight,
+} from "lucide-react";
+import { GeistSans } from "geist/font/sans";
 
 const services = [
   {
@@ -29,7 +39,8 @@ const services = [
       {
         title: "Loan Administration",
         tagline: "Streamlined loan management",
-        description: "Efficiently manage loans with AI-powered processing and client-friendly dashboards.",
+        description:
+          "Efficiently manage loans with AI-powered processing and client-friendly dashboards.",
         benefits: [
           "Automated payment processing and loan onboarding",
           "AI-driven interest rate adjustments and ARM processing",
@@ -39,7 +50,8 @@ const services = [
       {
         title: "Disbursement & PCNA Support",
         tagline: "Faster, compliant assessments",
-        description: "Streamline property assessments and disbursements with AI-driven workflows.",
+        description:
+          "Streamline property assessments and disbursements with AI-driven workflows.",
         benefits: [
           "AI-assisted property condition assessments",
           "Automated replacement reserves disbursement",
@@ -49,7 +61,8 @@ const services = [
       {
         title: "Legacy Data Migration",
         tagline: "Seamless data modernization",
-        description: "Migrate loan portfolios to modern platforms with AI-powered validation and error checks.",
+        description:
+          "Migrate loan portfolios to modern platforms with AI-powered validation and error checks.",
         benefits: [
           "AI-driven data cleansing and standardization",
           "Automated validation and error detection",
@@ -68,7 +81,8 @@ const services = [
       {
         title: "Cash Flow Modeling",
         tagline: "Intelligent projections and analysis",
-        description: "Create AI-powered cash flow models with advanced scenario analysis capabilities.",
+        description:
+          "Create AI-powered cash flow models with advanced scenario analysis capabilities.",
         benefits: [
           "AI-generated property income and expense projections",
           "Machine learning-based scenario analysis for market conditions",
@@ -77,7 +91,8 @@ const services = [
       {
         title: "Rent Roll Analysis",
         tagline: "Deep tenant insights",
-        description: "Gain quick insights into occupancy and revenue with AI-driven tenant data parsing.",
+        description:
+          "Gain quick insights into occupancy and revenue with AI-driven tenant data parsing.",
         benefits: [
           "Automated tenant-level data extraction and analysis",
           "AI-powered tenant risk assessment and rent structure comparison",
@@ -86,7 +101,8 @@ const services = [
       {
         title: "Underwriting & Due Diligence",
         tagline: "AI-assisted financial due diligence",
-        description: "Comprehensive financial due diligence with AI-powered analysis of key metrics.",
+        description:
+          "Comprehensive financial due diligence with AI-powered analysis of key metrics.",
         benefits: [
           "AI-generated financial due diligence reports",
           "Machine learning analysis of DSCR, LTV, NOI, and other metrics",
@@ -95,7 +111,8 @@ const services = [
       {
         title: "Custom Financial Modeling",
         tagline: "Tailored AI models",
-        description: "Develop custom AI-powered financial models with dynamic updates and integrations.",
+        description:
+          "Develop custom AI-powered financial models with dynamic updates and integrations.",
         benefits: [
           "AI-driven model customization for specific lender needs",
           "Intelligent Excel integration for real-time updates",
@@ -113,7 +130,8 @@ const services = [
       {
         title: "Lease Abstraction & Audit",
         tagline: "AI-driven lease data extraction",
-        description: "Extract and audit critical lease data using advanced AI and machine learning techniques.",
+        description:
+          "Extract and audit critical lease data using advanced AI and machine learning techniques.",
         benefits: [
           "AI-powered extraction of key lease clauses",
           "Automated lease audits for compliance and consistency",
@@ -122,7 +140,8 @@ const services = [
       {
         title: "Appraisal & OM Data Digitization",
         tagline: "Intelligent report conversion",
-        description: "Transform appraisals and OMs into structured data using AI and natural language processing.",
+        description:
+          "Transform appraisals and OMs into structured data using AI and natural language processing.",
         benefits: [
           "AI-driven conversion of reports into actionable data",
           "Instant access to key metrics through machine learning",
@@ -131,7 +150,8 @@ const services = [
       {
         title: "Legacy Data Migration",
         tagline: "AI-assisted data modernization",
-        description: "Modernize historical lease and financial data using AI-powered migration tools.",
+        description:
+          "Modernize historical lease and financial data using AI-powered migration tools.",
         benefits: [
           "Intelligent migration of legacy lease and financial data",
           "AI-driven data structuring and accuracy checks",
@@ -149,13 +169,18 @@ const services = [
       {
         title: "Salesforce Customization",
         tagline: "AI-enhanced CRM solutions",
-        description: "Implement AI-powered workflows and integrations for CRE-focused Salesforce instances.",
-        benefits: ["AI-driven workflow automation and integrations", "Intelligent centralized management of CRE data"],
+        description:
+          "Implement AI-powered workflows and integrations for CRE-focused Salesforce instances.",
+        benefits: [
+          "AI-driven workflow automation and integrations",
+          "Intelligent centralized management of CRE data",
+        ],
       },
       {
         title: "Custom Reporting & Dashboards",
         tagline: "AI-powered insights",
-        description: "Create dynamic, AI-enhanced dashboards tailored to your specific CRE KPIs.",
+        description:
+          "Create dynamic, AI-enhanced dashboards tailored to your specific CRE KPIs.",
         benefits: [
           "AI-generated dynamic dashboards for CRE KPIs",
           "Intelligent consolidation of portfolio performance data",
@@ -164,12 +189,16 @@ const services = [
       {
         title: "CRE Technology Consulting",
         tagline: "AI strategy for CRE tech",
-        description: "Expert guidance on implementing and scaling AI solutions for CRE operations.",
-        benefits: ["Strategic advice on AI tool selection for CRE", "Assistance with AI implementation and scaling"],
+        description:
+          "Expert guidance on implementing and scaling AI solutions for CRE operations.",
+        benefits: [
+          "Strategic advice on AI tool selection for CRE",
+          "Assistance with AI implementation and scaling",
+        ],
       },
     ],
   },
-]
+];
 
 interface Subservice {
   title: string;
@@ -178,8 +207,14 @@ interface Subservice {
   benefits: string[];
 }
 
-const SubserviceCard = ({ subservice, color }: { subservice: Subservice; color: string }) => {
-  const [isOpen, setIsOpen] = useState(false)
+const SubserviceCard = ({
+  subservice,
+  color,
+}: {
+  subservice: Subservice;
+  color: string;
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="flex items-start">
@@ -243,7 +278,7 @@ const SubserviceCard = ({ subservice, color }: { subservice: Subservice; color: 
       </Card>
     </div>
   );
-}
+};
 
 interface Service {
   id: string;
@@ -255,37 +290,54 @@ interface Service {
 }
 
 const ServiceSection = ({ service }: { service: Service }) => {
-  const Icon = service.icon
+  const Icon = service.icon;
 
   return (
     <div className="mb-6 h-full">
       <div className="flex items-center space-x-3 mb-3">
-        <div className="p-1.5 rounded-full text-white" style={{ backgroundColor: service.color }}>
+        <div
+          className="p-1.5 rounded-full text-white"
+          style={{ backgroundColor: service.color }}
+        >
           <Icon className="w-4 h-4" />
         </div>
-        <h3 className="text-lg md:text-xl font-bold text-gray-900">{service.title}</h3>
+        <h3 className="text-lg md:text-xl font-bold text-gray-900">
+          {service.title}
+        </h3>
       </div>
-      <p className="text-sm md:text-base text-gray-600 mb-3">{service.description}</p>
+      <p className="text-sm md:text-base text-gray-600 mb-3">
+        {service.description}
+      </p>
       <div className="space-y-3">
         {service.subservices.map((subservice, index) => (
-          <SubserviceCard key={index} subservice={subservice} color={service.color} />
+          <SubserviceCard
+            key={index}
+            subservice={subservice}
+            color={service.color}
+          />
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-const Slider = ({ currentIndex, setCurrentIndex }: { currentIndex: number; setCurrentIndex: React.Dispatch<React.SetStateAction<number>> }) => {
-  const sliderRef = useRef<HTMLDivElement>(null)
+const Slider = ({
+  currentIndex,
+  setCurrentIndex,
+}: {
+  currentIndex: number;
+  setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
+}) => {
+  const sliderRef = useRef<HTMLDivElement>(null);
 
   const handleSliderChange = (event: { clientX: number }) => {
     if (sliderRef.current) {
-      const rect = sliderRef.current.getBoundingClientRect()
-      const x = event.clientX - rect.left
-      const percentage = x / rect.width
-      setCurrentIndex(percentage > 0.5 ? 1 : 0)
+      const rect = sliderRef.current.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const percentage = x / rect.width;
+      setCurrentIndex(percentage > 0.5 ? 1 : 0);
     }
-  }
+  };
 
   return (
     <div className="w-full mt-8">
@@ -300,19 +352,19 @@ const Slider = ({ currentIndex, setCurrentIndex }: { currentIndex: number; setCu
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
 export function ServicesSection() {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleNext = () => {
-    setCurrentIndex(1)
-  }
+    setCurrentIndex(1);
+  };
 
   const handlePrev = () => {
-    setCurrentIndex(0)
-  }
+    setCurrentIndex(0);
+  };
 
   return (
     <section
@@ -320,17 +372,27 @@ export function ServicesSection() {
     >
       {/* AI-inspired background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <svg className="absolute w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <svg
+          className="absolute w-full h-full"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+        >
           {[...Array(5)].map((_, i) => (
             <motion.path
               key={i}
-              d={`M${i * 20},50 Q${i * 20 + 10},${30 + Math.random() * 40} ${i * 20 + 20},50`}
+              d={`M${i * 20},50 Q${i * 20 + 10},${30 + Math.random() * 40} ${
+                i * 20 + 20
+              },50`}
               stroke="rgba(59, 130, 246, 0.1)"
               strokeWidth="0.5"
               fill="none"
               initial={{ pathLength: 0, opacity: 0 }}
               animate={{ pathLength: 1, opacity: 1 }}
-              transition={{ duration: 2 + i, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" }}
+              transition={{
+                duration: 2 + i,
+                repeat: Number.POSITIVE_INFINITY,
+                repeatType: "reverse",
+              }}
             />
           ))}
         </svg>
@@ -343,9 +405,12 @@ export function ServicesSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Comprehensive CRE Services</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Our Comprehensive CRE Services
+          </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-            We handle the heavy lifting, so you can focus on clients and growing your business.
+            We handle the heavy lifting, so you can focus on clients and growing
+            your business.
           </p>
         </motion.div>
 
@@ -404,6 +469,5 @@ export function ServicesSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
-

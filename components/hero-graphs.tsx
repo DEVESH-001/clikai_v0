@@ -77,7 +77,9 @@ const generatePropertyComparison = () => [
 const generateNOITrend = () => {
   let noi = getRandomData(40000, 80000)
   return months.map((month) => {
-    noi = Math.max(40000, Math.min(80000, noi + getRandomData(-8000, 8000)))
+    const maxDeviation = noi * 0.2
+    const change = getRandomData(-maxDeviation, maxDeviation)
+    noi = Math.max(40000, Math.min(80000, noi + change))
     return { month, noi }
   })
 }
@@ -148,6 +150,7 @@ export function HeroGraphs() {
           font: {
             family: "'Geist', sans-serif",
           },
+          color: "rgba(0, 0, 0, 0.8)",
         },
       },
       title: {
@@ -160,6 +163,10 @@ export function HeroGraphs() {
           font: {
             family: "'Geist', sans-serif",
           },
+          color: "rgba(0, 0, 0, 0.8)",
+        },
+        grid: {
+          color: "rgba(0, 0, 0, 0.1)",
         },
       },
       y: {
@@ -167,6 +174,11 @@ export function HeroGraphs() {
           font: {
             family: "'Geist', sans-serif",
           },
+          color: "rgba(0, 0, 0, 0.8)",
+          display: false,
+        },
+        grid: {
+          color: "rgba(0, 0, 0, 0.1)",
         },
       },
     },
@@ -183,7 +195,7 @@ export function HeroGraphs() {
                 {
                   label: "Revenue",
                   data: data.monthlyRevenue.map((item) => item.revenue),
-                  backgroundColor: "rgba(59, 130, 246, 0.5)",
+                  backgroundColor: "rgba(59, 130, 246, 0.8)",
                 },
               ],
             }}
@@ -199,7 +211,7 @@ export function HeroGraphs() {
                 {
                   label: "Expirations",
                   data: data.leaseExpirations.map((item) => item.expirations),
-                  backgroundColor: "rgba(16, 185, 129, 0.5)",
+                  backgroundColor: "rgba(16, 185, 129, 0.8)",
                 },
               ],
             }}
@@ -216,13 +228,13 @@ export function HeroGraphs() {
                   label: "Income",
                   data: data.cashflowSummary.map((item) => item.income),
                   borderColor: "rgb(59, 130, 246)",
-                  backgroundColor: "rgba(59, 130, 246, 0.5)",
+                  backgroundColor: "rgba(59, 130, 246, 0.8)",
                 },
                 {
                   label: "Expenses",
                   data: data.cashflowSummary.map((item) => item.expenses),
                   borderColor: "rgb(239, 68, 68)",
-                  backgroundColor: "rgba(239, 68, 68, 0.5)",
+                  backgroundColor: "rgba(239, 68, 68, 0.8)",
                 },
               ],
             }}
@@ -238,17 +250,17 @@ export function HeroGraphs() {
                 {
                   label: "Preferred Return",
                   data: data.investorDistribution.map((item) => item.preferredReturn),
-                  backgroundColor: "rgba(59, 130, 246, 0.5)",
+                  backgroundColor: "rgba(59, 130, 246, 0.8)",
                 },
                 {
                   label: "Return of Capital",
                   data: data.investorDistribution.map((item) => item.returnOfCapital),
-                  backgroundColor: "rgba(16, 185, 129, 0.5)",
+                  backgroundColor: "rgba(16, 185, 129, 0.8)",
                 },
                 {
                   label: "Profit Sharing",
                   data: data.investorDistribution.map((item) => item.profitSharing),
-                  backgroundColor: "rgba(245, 158, 11, 0.5)",
+                  backgroundColor: "rgba(245, 158, 11, 0.8)",
                 },
               ],
             }}
@@ -314,18 +326,55 @@ export function HeroGraphs() {
               labels: data.propertyComparison.map((item) => item.property),
               datasets: [
                 {
+                  type: "bar" as const,
                   label: "NOI",
                   data: data.propertyComparison.map((item) => item.noi),
-                  backgroundColor: "rgba(59, 130, 246, 0.5)",
+                  backgroundColor: "rgba(59, 130, 246, 0.8)",
+                  yAxisID: "y",
                 },
                 {
+                  type: "bar" as const,
                   label: "Cap Rate",
                   data: data.propertyComparison.map((item) => Number.parseFloat(item.capRate)),
-                  backgroundColor: "rgba(16, 185, 129, 0.5)",
+                  borderColor: "rgb(16, 185, 129)",
+                  backgroundColor: "rgba(16, 185, 129, 0.8)",
+                  yAxisID: "y1",
                 },
               ],
             }}
-            options={chartOptions}
+            options={{
+              ...chartOptions,
+              scales: {
+                y: {
+                  type: "linear" as const,
+                  display: true,
+                  position: "left" as const,
+                  title: {
+                    display: true,
+                    text: "NOI",
+                  },
+                  ticks: {
+                    display: false,
+                  },
+                },
+                y1: {
+                  type: "linear" as const,
+                  display: true,
+                  position: "right" as const,
+                  grid: {
+                    drawOnChartArea: false,
+                  },
+                  title: {
+                    display: true,
+                    text: "Cap Rate (%)",
+                  },
+                  ticks: {
+                    callback: (value) => value + "%",
+                    display: false,
+                  },
+                },
+              },
+            }}
           />
         )
       case 1:
@@ -338,7 +387,7 @@ export function HeroGraphs() {
                   label: "NOI",
                   data: data.noiTrend.map((item) => item.noi),
                   borderColor: "rgb(59, 130, 246)",
-                  backgroundColor: "rgba(59, 130, 246, 0.5)",
+                  backgroundColor: "rgba(59, 130, 246, 0.8)",
                 },
               ],
             }}
@@ -411,61 +460,60 @@ export function HeroGraphs() {
     }
   }
 
-return (
-  <div className="flex flex-col h-full w-full p-2 space-y-2">
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={JSON.stringify(data)}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.5 }}
-        className="grid grid-cols-1 gap-2 h-full"
-      >
-        {/* Top Card */}
-        <Card className="shadow-md rounded-md overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
-          <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-1">
-            <CardTitle className="text-xs font-semibold">
-              {topGraphIndex === 0 && "Monthly Revenue"}
-              {topGraphIndex === 1 && "Lease Expirations"}
-              {topGraphIndex === 2 && "Cashflow Summary"}
-              {topGraphIndex === 3 && "Investor Distribution Schedule"}
-              {topGraphIndex === 4 && "Rent Roll Analysis"}
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-1 h-[200px]">{renderTopGraph()}</CardContent>
-        </Card>
-
-        {/* Bottom Cards */}
-        <div className="grid grid-cols-2 gap-2">
-          <Card className="shadow-md rounded-md overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
-            <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-1">
-              <CardTitle className="text-xs font-semibold">
-                {bottomLeftGraphIndex === 0 && "Property Comparison Report"}
-                {bottomLeftGraphIndex === 1 && "NOI Trend"}
-                {bottomLeftGraphIndex === 2 && "Loan Underwriting Report"}
-                {bottomLeftGraphIndex === 3 && "Unit Mix"}
-                {bottomLeftGraphIndex === 4 && "Occupancy Status"}
+  return (
+    <div className="flex flex-col h-full w-full p-2 space-y-1 relative z-10 rounded-lg">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={JSON.stringify(data)}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-1 gap-3 h-full"
+        >
+          <Card className="shadow-lg rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl mb-2 bg-white/80 backdrop-blur-sm">
+            <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-2">
+              <CardTitle className="text-sm font-bold">
+                {topGraphIndex === 0 && "Monthly Revenue"}
+                {topGraphIndex === 1 && "Lease Expirations"}
+                {topGraphIndex === 2 && "Cashflow Summary"}
+                {topGraphIndex === 3 && "Investor Distribution Schedule"}
+                {topGraphIndex === 4 && "Rent Roll Analysis"}
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-1 h-[150px]">{renderBottomGraph(bottomLeftGraphIndex)}</CardContent>
+            <CardContent className="p-2 h-[200px]">{renderTopGraph()}</CardContent>
           </Card>
 
-          <Card className="shadow-md rounded-md overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
-            <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-1">
-              <CardTitle className="text-xs font-semibold">
-                {bottomRightGraphIndex === 0 && "Property Comparison Report"}
-                {bottomRightGraphIndex === 1 && "NOI Trend"}
-                {bottomRightGraphIndex === 2 && "Loan Underwriting Report"}
-                {bottomRightGraphIndex === 3 && "Unit Mix"}
-                {bottomRightGraphIndex === 4 && "Occupancy Status"}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-1 h-[150px]">{renderBottomGraph(bottomRightGraphIndex)}</CardContent>
-          </Card>
-        </div>
-      </motion.div>
-    </AnimatePresence>
-  </div>
-);
+          <div className="grid grid-cols-2 gap-3">
+            <Card className="shadow-lg rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl bg-white/80 backdrop-blur-sm">
+              <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-2">
+                <CardTitle className="text-sm font-bold">
+                  {bottomLeftGraphIndex === 0 && "Property Comparison Report"}
+                  {bottomLeftGraphIndex === 1 && "NOI Trend"}
+                  {bottomLeftGraphIndex === 2 && "Loan Underwriting Report"}
+                  {bottomLeftGraphIndex === 3 && "Unit Mix"}
+                  {bottomLeftGraphIndex === 4 && "Occupancy Status"}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-2 h-[180px]">{renderBottomGraph(bottomLeftGraphIndex)}</CardContent>
+            </Card>
+
+            <Card className="shadow-lg rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl bg-white/80 backdrop-blur-sm">
+              <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-2">
+                <CardTitle className="text-sm font-bold">
+                  {bottomRightGraphIndex === 0 && "Property Comparison Report"}
+                  {bottomRightGraphIndex === 1 && "NOI Trend"}
+                  {bottomRightGraphIndex === 2 && "Loan Underwriting Report"}
+                  {bottomRightGraphIndex === 3 && "Unit Mix"}
+                  {bottomRightGraphIndex === 4 && "Occupancy Status"}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-2 h-[180px]">{renderBottomGraph(bottomRightGraphIndex)}</CardContent>
+            </Card>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  )
 }
+
