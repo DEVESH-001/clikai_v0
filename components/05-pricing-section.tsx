@@ -1,13 +1,12 @@
-//chnages to make switch and slider
+
 "use client";
 
 import * as React from "react";
 import { Slider } from "@/components/ui/slider";
-import { Switch } from "@/components/ui/switch";
+
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Check, X } from "lucide-react";
-
+import { Check, } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -223,29 +222,29 @@ export function PricingSection() {
         </div>
 
         {/* Billing Toggle */}
+        {/* Billing Toggle */}
         <div className="flex items-center justify-center gap-3 mb-8">
-          <span
-            className={`text-lg ${
-              !isYearly ? "text-gray-900 font-bold" : "text-gray-600"
+          <Button
+            onClick={() => setIsYearly(false)}
+            className={`px-4 py-2 rounded-l-lg ${
+              !isYearly
+                ? "bg-blue-600 text-white font-bold"
+                : "bg-gray-200 text-gray-600"
             }`}
           >
             Monthly
-          </span>
-          <Switch
-            checked={isYearly}
-            onCheckedChange={setIsYearly}
-            className="bg-blue-500 data-[state=checked]:bg-blue-600"
-          />
-          <span
-            className={`text-lg ${
-              isYearly ? "text-gray-900 font-bold" : "text-gray-600"
+          </Button>
+          <Button
+            onClick={() => setIsYearly(true)}
+            className={`px-4 py-2 rounded-r-lg ${
+              isYearly
+                ? "bg-blue-600 text-white font-bold"
+                : "bg-gray-200 text-gray-600"
             }`}
           >
             Yearly{" "}
-            <span className="text-green-600 text-base font-bold">
-              (Save 17%)
-            </span>
-          </span>
+            <span className="text-green-600 text-sm font-bold">(Save 17%)</span>
+          </Button>
         </div>
 
         {/* Deals Slider */}
@@ -260,7 +259,7 @@ export function PricingSection() {
             onValueChange={(value) => setDealsPerMonth(value[0])}
             max={40}
             step={1}
-            className="py-4 px-2 rounded-lg  backdrop-blur-sm"
+            className="py-4"
           />
           <div className="flex justify-between text-sm text-gray-600 px-1 mt-2">
             {[0, 10, 20, 30, 40].map((value) => (
@@ -271,7 +270,7 @@ export function PricingSection() {
 
         {/* Pricing Cards */}
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {plans.map((plan) => (
+          {plans.map((plan, index) => (
             <Card
               key={plan.name}
               className={`relative overflow-hidden flex flex-col w-full border ${
@@ -406,3 +405,4 @@ export function PricingSection() {
     </section>
   );
 }
+
