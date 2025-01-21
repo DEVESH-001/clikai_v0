@@ -248,7 +248,7 @@ export function PricingSection() {
         </div>
 
         {/* Deals Slider */}
-        <div className="max-w-2xl mx-auto mb-12">
+        {/* <div className="max-w-2xl mx-auto mb-12">
           <p className="text-center mb-3 text-lg text-gray-700">
             I need{" "}
             <span className="font-bold text-blue-600">{dealsPerMonth}</span>{" "}
@@ -266,9 +266,46 @@ export function PricingSection() {
               <span key={value}>{value}</span>
             ))}
           </div>
+        </div> */}
+        {/* Deals Slider */}
+        <div className="max-w-2xl mx-auto mb-12">
+          <p className="text-center mb-3 text-lg text-gray-700">
+            I need{" "}
+            <span className="font-bold text-blue-600">{dealsPerMonth}</span>{" "}
+            deals per month
+          </p>
+          <div className="relative py-4">
+            {/* Slider with Color Fill */}
+            <Slider
+              value={[dealsPerMonth]}
+              onValueChange={(value) => setDealsPerMonth(value[0])}
+              max={40}
+              step={1}
+              className="relative z-10"
+              style={{
+                background: `linear-gradient(to right, #3b82f6 ${
+                  (dealsPerMonth / 40) * 100
+                }%, #e5e7eb ${(dealsPerMonth / 40) * 100}%)`,
+                height: "6px",
+                borderRadius: "4px",
+              }}
+            />
+          </div>
+          <div className="flex justify-between text-sm text-gray-600 px-1 mt-2">
+            {[0, 10, 20, 30, 40].map((value) => (
+              <span
+                key={value}
+                className={`${
+                  value === dealsPerMonth ? "font-bold text-blue-600" : ""
+                }`}
+              >
+                {value}
+              </span>
+            ))}
+          </div>
         </div>
 
-        {/* Pricing Cards */}
+        {/* Pricing Cards
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {plans.map((plan) => (
             <Card
@@ -324,6 +361,81 @@ export function PricingSection() {
                     </li>
                   ))}
                 </ul>
+                <Button
+                  className={`w-full ${
+                    highlightedPlan === plan.name
+                      ? "bg-blue-600 hover:bg-blue-700"
+                      : "bg-blue-500 hover:bg-blue-600"
+                  } text-white font-bold py-2 px-4 rounded transition duration-300`}
+                >
+                  {plan.cta}
+                </Button>
+              </div>
+            </Card>
+          ))}
+        </div> */}
+        {/* Pricing Cards */}
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {plans.map((plan) => (
+            <Card
+              key={plan.name}
+              className={`relative overflow-hidden flex flex-col w-full border rounded-lg ${
+                highlightedPlan === plan.name
+                  ? "border-4 border-blue-500 shadow-lg bg-white scale-105"
+                  : "border border-blue-200 bg-white/80"
+              } transition-all duration-300 hover:shadow-xl backdrop-blur-sm`}
+            >
+              {/* Ribbon */}
+              {plan.ribbon && (
+                <div className="absolute top-0 right-0 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
+                  {plan.ribbon}
+                </div>
+              )}
+              <div className="p-6 flex flex-col h-full">
+                {/* Plan Name */}
+                <h3 className="text-2xl font-bold mb-2 text-gray-900">
+                  {plan.name}
+                </h3>
+                {/* Description */}
+                <p className="text-gray-600 mb-4">{plan.description}</p>
+                <div className="mb-6">
+                  {/* Price */}
+                  {plan.monthlyPrice ? (
+                    <div className="text-4xl font-bold text-gray-900">
+                      $
+                      {isYearly
+                        ? calculateYearlyPrice(plan.monthlyPrice)
+                        : plan.monthlyPrice}
+                      <span className="text-xl font-normal text-gray-600">
+                        /{isYearly ? "year" : "month"}
+                      </span>
+                      {plan.perDealPrice && (
+                        <span className="block text-lg font-normal text-gray-600 mt-1">
+                          + ${plan.perDealPrice}/deal
+                        </span>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="text-3xl font-bold text-gray-900">
+                      {plan.price}
+                    </div>
+                  )}
+                  {isYearly && plan.monthlyPrice && (
+                    <p className="text-sm text-green-600 font-semibold mt-2">
+                      Save {calculateSavings(plan.monthlyPrice)}%
+                    </p>
+                  )}
+                </div>
+                {/* Features */}
+                <ul className="space-y-3 mb-6 flex-grow">
+                  {plan.features.map((feature, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm">
+                      <Check className="h-5 w-5 text-green-500 flex-shrink-0" />
+                      <span className="text-gray-600">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                {/* Call-to-Action Button */}
                 <Button
                   className={`w-full ${
                     highlightedPlan === plan.name

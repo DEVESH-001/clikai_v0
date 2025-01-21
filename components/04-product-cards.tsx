@@ -239,10 +239,10 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                 ))}
               </ul>
 
-              <Button className="w-full group relative overflow-hidden bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 text-sm md:text-base">
+              <Button className="w-full group relative overflow-hidden bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 text-sm md:text-base ">
                 Explore {product.title}
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 "  />
               </Button>
             </div>
 
@@ -302,7 +302,7 @@ export function ProductCards({ }: ProductCardsProps) {
           </motion.p>
         </div>
 
-        <div className="space-y-8 md:space-y-12 lg:space-y-16">
+        <div className="space-y-8 md:space-y-12 lg:space-y-16 ">
           {products.map((product, index) => (
             <ProductCard key={product.title} product={product} index={index} />
           ))}
