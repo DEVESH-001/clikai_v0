@@ -3,10 +3,10 @@
 
 import * as React from "react";
 import { Slider } from "@/components/ui/slider";
-
+import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Check, } from "lucide-react";
+import { Check, HelpCircle, X} from "lucide-react";
 import {
   Table,
   TableBody,
