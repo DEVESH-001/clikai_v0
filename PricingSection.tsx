@@ -1,21 +1,164 @@
 "use client";
 
 import * as React from "react";
+import { Slider } from "@/components/ui/slider";
 
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Check, X } from "lucide-react";
 
-import { Button } from "../components/ui/button";
-import { Card } from "../components/ui/card";
-import { Check } from "lucide-react";
-import { Slider } from "../components/ui/slider";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+
+// Define the structure of a pricing plan
+interface Plan {
+  name: string;
+  description: string;
+  monthlyPrice?: number;
+  price?: string;
+  perDealPrice?: number;
+  features: string[];
+  bestFor: string[];
+  cta: string;
+  ribbon?: string;
+}
+
+// Define the structure and content of each pricing plan
+const plans: Plan[] = [
+  {
+    name: "Self-Service",
+    description: "Ideal for 1-4 deals per month",
+    monthlyPrice: 49,
+    features: [
+      "Self-Managed - DIY",
+      "Online Video Tutorials",
+      "Multifamily only",
+      "AI-powered data extraction",
+      "Basic financial modeling",
+      "Access to InvestAssist",
+      "Teams with analysts seeking automated parsing tools",
+      "Users eager to master DIY extraction",
+      "Budget-conscious users starting with automation",
+    ],
+    bestFor: [
+      "Teams with analysts seeking automated parsing tools",
+      "Users eager to master DIY extraction",
+      "Clients testing our extraction capabilities before scaling",
+      "Budget-conscious users starting with automation",
+    ],
+    cta: "Get Started",
+  },
+  {
+    name: "Growth",
+    description: "Clik Analysts Do It for You",
+    monthlyPrice: 99,
+    perDealPrice: 30,
+    features: [
+      "Ideal for 5–20 deals per month",
+      "Financial models completed by Clik Analysts",
+      "All Asset Classes Included",
+      "Advanced AI-driven insights",
+      "Priority support",
+      "Customers seeking hands-free financial modeling",
+      "Teams looking to scale underwriting without hiring",
+      "Clients requiring analyst expertise for deal accuracy",
+    ],
+    bestFor: [
+      "Customers seeking hands-free financial modeling",
+      "Teams looking to scale underwriting without hiring",
+      "Clients requiring analyst expertise for deal accuracy",
+      "Users balancing automation with professional support",
+    ],
+    cta: "Get Started",
+    ribbon: "Most Popular",
+  },
+  {
+    name: "Enterprise",
+    description: "Complete Automation & Expert Support",
+    price: "Custom Pricing",
+    features: [
+      "Unlimited self-created deals",
+      "20 complementary Clik Analyst deals per month",
+      "$30 per additional Clik Analyst underwriting",
+      "Access to self-service data extraction tools",
+      "Custom model integration with unlimited updates",
+      "Excel Add-in to sync updates",
+      "Comprehensive platform training",
+      "All Asset Classes Included",
+      "Dedicated account manager",
+      "Custom API access for your business",
+      "High-volume and complex underwriting",
+      "Companies needing scalable, customizable solutions",
+      "Power users combining automation and expert support",
+    ],
+    bestFor: [
+      "High-volume and complex underwriting",
+      "Companies needing scalable, customizable solutions",
+      "Power users combining automation and expert support",
+    ],
+    cta: "Talk to Us",
+  },
+];
+
+const featureComparison = [
+  {
+    feature: "AI-powered data extraction",
+    selfService: true,
+    growth: true,
+    enterprise: true,
+  },
+  {
+    feature: "Financial modeling",
+    selfService: "Basic",
+    growth: "Advanced",
+    enterprise: "Custom",
+  },
+  {
+    feature: "Asset classes",
+    selfService: "Multifamily only",
+    growth: "All",
+    enterprise: "All",
+  },
+  {
+    feature: "Analyst support",
+    selfService: false,
+    growth: true,
+    enterprise: true,
+  },
+  {
+    feature: "API access",
+    selfService: false,
+    growth: false,
+    enterprise: true,
+  },
+  {
+    feature: "Custom integrations",
+    selfService: false,
+    growth: false,
+    enterprise: true,
+  },
+  {
+    feature: "Dedicated account manager",
+    selfService: false,
+    growth: false,
+    enterprise: true,
+  },
+];
 
 export function PricingSection() {
   const [dealsPerMonth, setDealsPerMonth] = React.useState(10);
   const [isYearly, setIsYearly] = React.useState(false);
 
   const getHighlightedPlan = (deals: number) => {
-    if (deals <= 4) return "self-service";
-    if (deals <= 20) return "small-business";
-    return "enterprise";
+    if (deals <= 4) return "Self-Service";
+    if (deals <= 20) return "Growth";
+    return "Enterprise";
   };
 
   const highlightedPlan = getHighlightedPlan(dealsPerMonth);
@@ -25,441 +168,256 @@ export function PricingSection() {
   };
 
   const calculateSavings = (monthlyPrice: number) => {
-    const yearlyPrice = monthlyPrice * 10;
-    const regularYearlyPrice = monthlyPrice * 12;
-    const savingsPercentage = (
-      ((regularYearlyPrice - yearlyPrice) / regularYearlyPrice) *
+    return (
+      ((monthlyPrice * 12 - monthlyPrice * 10) / (monthlyPrice * 12)) *
       100
     ).toFixed(0);
-    return savingsPercentage;
-  };
-
-  // Function to handle billing period toggle
-  const toggleBilling = () => {
-    setIsYearly(!isYearly);
   };
 
   return (
-    <section className="py-12 bg-gradient-to-br from-blue-600 to-blue-800 text-white relative">
-      {/* Background with grid pattern */}
-      <div className="absolute inset-0">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)",
-            backgroundSize: "20px 20px",
-          }}
-        ></div>
+    <section className="pt-16 pb-24 relative overflow-hidden bg-gradient-to-b from-blue-50 via-purple-50 to-indigo-50">
+      {/* Abstract background pattern with curvy lines */}
+      <div className="absolute inset-0 overflow-hidden">
+        <svg
+          className="absolute w-full h-full"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="rgba(59, 130, 246, 0.1)" />
+              <stop offset="100%" stopColor="rgba(37, 99, 235, 0.1)" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M0,50 Q25,30 50,50 T100,50 T150,50 T200,50"
+            stroke="rgba(37, 99, 235, 0.2)"
+            fill="none"
+            strokeWidth="0.5"
+          />
+          <path
+            d="M0,70 Q25,50 50,70 T100,70 T150,70 T200,70"
+            stroke="rgba(37, 99, 235, 0.2)"
+            fill="none"
+            strokeWidth="0.5"
+          />
+          <path
+            d="M0,30 Q25,50 50,30 T100,30 T150,30 T200,30"
+            stroke="rgba(37, 99, 235, 0.2)"
+            fill="none"
+            strokeWidth="0.5"
+          />
+        </svg>
       </div>
-      <div className="container px-4 mx-auto">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold mb-2 text-white">
-            Choose the right plan for your business
+
+      <div className="container px-4 mx-auto relative z-10">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4 text-gray-900">
+            Pricing Plans
           </h2>
-          <p className="text-base text-gray-300">
-            Scale your underwriting operations with our flexible plans
+          <p className="text-xl text-gray-600">
+            Choose the perfect plan for your business
           </p>
         </div>
 
-        {/* Billing Toggle
-        <div className="flex items-center justify-center gap-3 mb-6 ">
-          <span
-            className={`text-lg ${
-              !isYearly ? "text-white font-bold" : "text-gray-200 "
-            }`}
-          >
-            Monthly
-          </span>
-          <Switch
-            checked={isYearly}
-            onCheckedChange={toggleBilling}
-            className={`relative inline-flex h-6 w-12 items-center rounded-full 
-      ${
-        isYearly ? "bg-black" : "bg-slate-600"
-      } transition-colors duration-300 `}
-          />
-          <span
-            className={`h-5 w-5 transform rounded-full bg-white transition-transform duration-300 
-        ${isYearly ? "translate-x-6" : "translate-x-1"}`}
-          />
-
-          <span
-            className={`text-lg ${
-              isYearly ? "text-white font-bold" : "text-gray-200"
-            }`}
-          >
-            Yearly{" "}
-            <span className="text-green-400 text-base font-bold">
-              (Save {calculateSavings(99)}%)
-            </span>
-          </span>
-        </div> */}
         {/* Billing Toggle */}
 
-        <div className="flex items-center justify-center gap-3 mb-6">
-          <span
-            className={`text-lg ${
-              !isYearly ? "text-white font-bold" : "text-gray-200"
+        <div className="flex items-center justify-center gap-3 mb-8">
+          <Button
+            onClick={() => setIsYearly(false)}
+            className={`px-4 py-2 rounded-l-lg ${
+              !isYearly
+                ? "bg-blue-600 text-white font-bold"
+                : "bg-gray-200 text-gray-600"
             }`}
           >
             Monthly
-          </span>
-
-          <div className="relative  border-gray-300 p-0.5">
-            <button
-              onClick={toggleBilling}
-              className={`relative inline-flex h-6 w-12 items-center rounded-full ${
-                isYearly ? "bg-black" : "bg-slate-600"
-              } transition-colors duration-300`}
-            >
-              <span
-                className={`h-5 w-5 transform rounded-full bg-white transition-transform duration-300 ${
-                  isYearly ? "translate-x-6" : "translate-x-1"
-                }`}
-              />
-            </button>
-          </div>
-
-          <span
-            className={`text-lg ${
-              isYearly ? "text-white font-bold" : "text-gray-200"
+          </Button>
+          <Button
+            onClick={() => setIsYearly(true)}
+            className={`px-4 py-2 rounded-r-lg ${
+              isYearly
+                ? "bg-blue-600 text-white font-bold"
+                : "bg-gray-200 text-gray-600"
             }`}
           >
             Yearly{" "}
-            <span className="text-green-400 text-base font-bold">
-              (Save {calculateSavings(99)}%)
-            </span>
-          </span>
+            <span className="text-green-400 text-sm font-bold">(Save 17%)</span>
+          </Button>
         </div>
-
         {/* Deals Slider */}
-        <div className="max-w-2xl mx-auto mb-10">
-          <p className="text-center mb-3 text-lg text-white">
+        <div className="max-w-2xl mx-auto mb-12">
+          <p className="text-center mb-3 text-lg text-gray-700">
             I need{" "}
-            <span className="font-bold text-blue-300">{dealsPerMonth}</span>{" "}
+            <span className="font-bold text-blue-600">{dealsPerMonth}</span>{" "}
             deals per month
           </p>
-
-          <Slider
-            value={[dealsPerMonth]}
-            onValueChange={(value) => setDealsPerMonth(value[0])}
-            max={40}
-            step={1}
-            className="py-2 w-full h-1 rounded-full relative overflow-hidden cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-300"
-            style={{
-              background: `linear-gradient(to right, black ${(
-                (dealsPerMonth / 40) *
-                100
-              ).toFixed(0)}%, white 0%)`,
-            }}
-          />
-
-          <div className="flex justify-between text-sm text-blue-200 px-1 mt-2">
+          <div className="relative py-4">
+            {/* Slider with Tooltip */}
+            <Slider
+              value={[dealsPerMonth]}
+              onValueChange={(value) => setDealsPerMonth(value[0])}
+              max={40}
+              step={1}
+              className="relative z-10"
+            />
+            <div
+              className="absolute bg-blue-600 text-white text-xs font-medium px-2 py-1 rounded shadow-md -translate-x-1/2"
+              style={{
+                left: `${(dealsPerMonth / 40) * 100}%`,
+                top: "-1.5rem",
+              }}
+            >
+              {dealsPerMonth}
+            </div>
+          </div>
+          <div className="flex justify-between text-sm text-gray-600 px-1 mt-2">
             {[0, 10, 20, 30, 40].map((value) => (
-              <span key={value}>{value}</span>
+              <span
+                key={value}
+                className={`${
+                  value === dealsPerMonth ? "font-bold text-blue-600" : ""
+                }`}
+              >
+                {value}
+              </span>
             ))}
           </div>
         </div>
-
-        {/* <div className="max-w-2xl mx-auto mb-10">
-          <p className="text-center mb-3 text-lg text-white">
-            I need{" "}
-            <span className="font-bold text-blue-300">{dealsPerMonth}</span>{" "}
-            deals per month
-          </p>
-
-          <Slider
-            value={[dealsPerMonth]}
-            onValueChange={(value) => setDealsPerMonth(value[0])}
-            max={40}
-            step={1}
-            className="py-2 w-full h-1 bg-black/90 rounded-full relative overflow-hidden cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-300"
-          />
-
-          <div className="flex justify-between text-sm text-blue-200 px-1 mt-2">
-            {[0, 10, 20, 30, 40].map((value) => (
-              <span key={value}>{value}</span>
-            ))}
-          </div>
-        </div> */}
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-4 max-w-6xl mx-auto">
-          {/* Self Service Plan */}
-          <Card
-            className={`relative overflow-hidden flex flex-col w-full ${
-              highlightedPlan === "self-service"
-                ? "border-blue-300 border-2 bg-blue-200"
-                : "border-gray-300 bg-blue-50"
-            }`}
-          >
-            <div className="p-5 h-[220px] flex flex-col justify-between">
-              <div>
-                <h3 className="text-lg font-bold mb-1 text-slate-600">
-                  Self-Service Plan
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {plans.map((plan, ) => (
+            <Card
+              key={plan.name}
+              className={`relative overflow-hidden flex flex-col w-full border ${
+                highlightedPlan === plan.name
+                  ? "border-blue-500 shadow-lg bg-white"
+                  : "border-blue-200 bg-white/80"
+              } transition-all duration-300 hover:shadow-xl backdrop-blur-sm`}
+            >
+              {plan.ribbon && (
+                <div className="absolute top-0 right-0 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
+                  {plan.ribbon}
+                </div>
+              )}
+              <div className="p-6 flex flex-col h-full">
+                <h3 className="text-2xl font-bold mb-2 text-gray-900">
+                  {plan.name}
                 </h3>
-                <p className="text-sm text-slate-600 mb-3">
-                  Ideal for 1-4 deals per month
-                </p>
-                <div className="mb-4">
-                  <div className="text-2xl font-bold text-slate-600">
-                    ${isYearly ? calculateYearlyPrice(49) : "49"}
-                    <span className="text-sm font-normal text-slate-600">
-                      /{isYearly ? "year" : "month"}
-                    </span>
-                  </div>
-                  {isYearly && (
-                    <p className="text-sm text-green-600 font-semibold">
-                      Save {calculateSavings(49)}%
+                <p className="text-gray-600 mb-4">{plan.description}</p>
+                <div className="mb-6">
+                  {plan.monthlyPrice ? (
+                    <div className="text-4xl font-bold text-gray-900">
+                      $
+                      {isYearly
+                        ? calculateYearlyPrice(plan.monthlyPrice)
+                        : plan.monthlyPrice}
+                      <span className="text-xl font-normal text-gray-600">
+                        /{isYearly ? "year" : "month"}
+                      </span>
+                      {plan.perDealPrice && (
+                        <span className="block text-lg font-normal text-gray-600 mt-1">
+                          + ${plan.perDealPrice}/deal
+                        </span>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="text-3xl font-bold text-gray-900">
+                      {plan.price}
+                    </div>
+                  )}
+                  {isYearly && plan.monthlyPrice && (
+                    <p className="text-sm text-green-600 font-semibold mt-2">
+                      Save {calculateSavings(plan.monthlyPrice)}%
                     </p>
                   )}
                 </div>
-              </div>
-              <div className="w-full">
+                <ul className="space-y-3 mb-6 flex-grow">
+                  {plan.features.map((feature, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm">
+                      <Check className="h-5 w-5 text-green-500 flex-shrink-0" />
+                      <span className="text-gray-600">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
                 <Button
-                  className="w-full border-2 border-blue-600 bg-black hover:bg-slate-300 hover:text-black"
-                  size="lg"
-                  variant={
-                    highlightedPlan === "self-service" ? "default" : "outline"
-                  }
+                  className={`w-full ${
+                    highlightedPlan === plan.name
+                      ? "bg-blue-600 hover:bg-blue-700"
+                      : "bg-blue-500 hover:bg-blue-600"
+                  } text-white font-bold py-2 px-4 rounded transition duration-300`}
                 >
-                  Get Started
+                  {plan.cta}
                 </Button>
               </div>
-            </div>
-            <div className="p-5 flex-grow">
-              <p className="font-medium mb-3 text-sm text-slate-900">
-                Plan includes:
-              </p>
-              <ul className="space-y-2 mb-4">
-                <li className="flex items-start gap-2 text-sm">
-                  <Check className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-600">Self-Managed - DIY</span>
-                </li>
-                <li className="flex items-start gap-2 text-sm">
-                  <Check className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-600">Online Video Tutorials</span>
-                </li>
-                <li className="flex items-start gap-2 text-sm">
-                  <Check className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-600">Multifamily only</span>
-                </li>
-              </ul>
-            </div>
-            <div className="mt-auto pt-3 border-t p-5">
-              <p className="font-medium mb-2 text-sm h-5 text-slate-600">
-                Best Suited For:
-              </p>
-              <Card className="bg-[#002b57] p-3 h-[160px] overflow-y-auto">
-                <ul className="space-y-1 text-sm text-gray-300">
-                  <li>• Teams with analysts seeking automated parsing tools</li>
-                  <li>• Users eager to master DIY extraction</li>
-                  <li>
-                    • Clients testing our extraction capabilities before scaling
-                  </li>
-                  <li>• Budget-conscious users starting with automation</li>
-                </ul>
-              </Card>
-            </div>
-          </Card>
+            </Card>
+          ))}
+        </div>
 
-          {/* Small Business Plan */}
-          <Card
-            className={`relative overflow-hidden flex flex-col w-full ${
-              highlightedPlan === "small-business"
-                ? "border-blue-300 border-2 bg-blue-200"
-                : "border-gray-300 bg-blue-50"
-            }`}
-          >
-            <div className="absolute top-0 right-0 px-3 py-1 bg-blue-600 text-white text-xs font-medium">
-              Most Popular
-            </div>
-            <div className="p-5 h-[220px] flex flex-col justify-between">
-              <div>
-                <h3 className="text-lg font-bold mb-1 text-slate-600">
-                  Small Business Plan
-                </h3>
-                <p className="text-sm font-semibold text-slate-600 mb-3">
-                  Clik Analysts Do It for You
-                </p>
-                <div className="mb-4">
-                  <div className="flex flex-col items-start">
-                    <span className="text-2xl font-bold text-slate-600">
-                      ${isYearly ? calculateYearlyPrice(99) : "99"}
-                      <span className="text-sm font-normal">
-                        /{isYearly ? "year" : "month"} (Platform Fee)
-                      </span>
-                    </span>
-                    <span className="text-sm font-semibold text-gray-700">
-                      + $30 per deal
-                    </span>
-                    {isYearly && (
-                      <p className="text-sm text-green-600 font-semibold">
-                        Save {calculateSavings(99)}%
-                      </p>
+        {/* Feature Comparison Table */}
+        <div className="mt-16 max-w-4xl mx-auto bg-white/90 shadow-lg rounded-lg overflow-hidden backdrop-blur-sm">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="text-left text-gray-900">
+                  Feature
+                </TableHead>
+                <TableHead className="text-center text-gray-900">
+                  Self-Service
+                </TableHead>
+                <TableHead className="text-center text-gray-900">
+                  Growth
+                </TableHead>
+                <TableHead className="text-center text-gray-900">
+                  Enterprise
+                </TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {featureComparison.map((item, index) => (
+                <TableRow key={index}>
+                  <TableCell className="font-medium text-gray-700">
+                    {item.feature}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {typeof item.selfService === "boolean" ? (
+                      item.selfService ? (
+                        <Check className="inline-block text-green-500" />
+                      ) : (
+                        <X className="inline-block text-red-500" />
+                      )
+                    ) : (
+                      <span className="text-gray-600">{item.selfService}</span>
                     )}
-                  </div>
-                </div>
-              </div>
-              <div className="w-full">
-                <Button
-                  className="w-full border-2 border-blue-600 bg-black hover:bg-slate-300 hover:text-black"
-                  size="lg"
-                  variant={
-                    highlightedPlan === "small-business" ? "default" : "outline"
-                  }
-                >
-                  Get Started
-                </Button>
-              </div>
-            </div>
-            <div className="p-5 flex-grow">
-              <p className="font-medium mb-3 text-sm text-gray-900">
-                Plan includes:
-              </p>
-              <ul className="space-y-2 mb-4">
-                <li className="flex items-start gap-2 text-sm">
-                  <Check className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-600">
-                    Ideal for 5–20 deals per month
-                  </span>
-                </li>
-                <li className="flex items-start gap-2 text-sm">
-                  <Check className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-600">
-                    Financial models completed by Clik Analysts
-                  </span>
-                </li>
-                <li className="flex items-start gap-2 text-sm">
-                  <Check className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-600">
-                    All Asset Classes Included
-                  </span>
-                </li>
-              </ul>
-            </div>
-            <div className="mt-auto pt-3 border-t p-5">
-              <p className="font-medium mb-2 text-sm h-5 text-slate-600">
-                Best Suited For:
-              </p>
-              <Card className="bg-[#002b57] p-3 h-[160px] overflow-y-auto">
-                <ul className="space-y-1 text-sm text-gray-300">
-                  <li>• Customers seeking hands-free financial modeling</li>
-                  <li>• Teams looking to scale underwriting without hiring</li>
-                  <li>
-                    • Clients requiring analyst expertise for deal accuracy
-                  </li>
-                  <li>
-                    • Users balancing automation with professional support
-                  </li>
-                </ul>
-              </Card>
-            </div>
-          </Card>
-
-          {/* Enterprise Plan */}
-          <Card
-            className={`relative overflow-hidden flex flex-col w-full ${
-              highlightedPlan === "enterprise"
-                ? "border-blue-300 border-2 bg-blue-200"
-                : "border-gray-300 bg-blue-50"
-            }`}
-          >
-            <div className="p-5 h-[220px] flex flex-col justify-between">
-              <div>
-                <h3 className="text-lg font-bold mb-1 text-slate-600">
-                  Enterprise Plan
-                </h3>
-                <p className="text-sm text-slate-600 mb-3">
-                  Complete Automation & Expert Support
-                </p>
-                <div className="mb-4">
-                  <div className="text-2xl font-bold text-slate-600">
-                    Custom Pricing
-                  </div>
-                </div>
-              </div>
-              <div className="w-full">
-                <Button
-                  className="w-full border-2 border-blue-600 bg-black hover:bg-slate-300 hover:text-black"
-                  size="lg"
-                  variant={
-                    highlightedPlan === "enterprise" ? "default" : "outline"
-                  }
-                >
-                  Talk to Us
-                </Button>
-              </div>
-            </div>
-            <div className="p-5 flex-grow">
-              <p className="font-medium mb-3 text-sm text-slate-900">
-                Plan includes:
-              </p>
-              <ul className="space-y-2 mb-4">
-                <li className="flex items-start gap-2 text-sm">
-                  <Check className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-600">
-                    Unlimited self-created deals
-                  </span>
-                </li>
-                <li className="flex items-start gap-2 text-sm">
-                  <Check className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-600">
-                    20 complementary Clik Analyst deals per month
-                  </span>
-                </li>
-                <li className="flex items-start gap-2 text-sm">
-                  <Check className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-600">
-                    $30 per additional Clik Analyst underwriting
-                  </span>
-                </li>
-                <li className="flex items-start gap-2 text-sm">
-                  <Check className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-600">
-                    Access to self-service data extraction tools
-                  </span>
-                </li>
-                <li className="flex items-start gap-2 text-sm">
-                  <Check className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-600">
-                    Custom model integration with unlimited updates
-                  </span>
-                </li>
-                <li className="flex items-start gap-2 text-sm">
-                  <Check className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-600">
-                    Excel Add-in to sync updates
-                  </span>
-                </li>
-                <li className="flex items-start gap-2 text-sm">
-                  <Check className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-600">
-                    Comprehensive platform training
-                  </span>
-                </li>
-                <li className="flex items-start gap-2 text-sm">
-                  <Check className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-600">
-                    All Asset Classes Included
-                  </span>
-                </li>
-              </ul>
-            </div>
-            <div className="mt-auto pt-3 border-t p-5">
-              <p className="font-medium mb-2 text-sm h-5 text-slate-600">
-                Best Suited For:
-              </p>
-              <Card className="bg-[#002b57] p-3 h-[160px] overflow-y-auto">
-                <ul className="space-y-1 text-sm text-gray-300">
-                  <li>• High-volume underwriting teams</li>
-                  <li>• Companies needing scalable, customizable solutions</li>
-                  <li>• Power users combining automation and expert support</li>
-                </ul>
-              </Card>
-            </div>
-          </Card>
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {typeof item.growth === "boolean" ? (
+                      item.growth ? (
+                        <Check className="inline-block text-green-500" />
+                      ) : (
+                        <X className="inline-block text-red-500" />
+                      )
+                    ) : (
+                      <span className="text-gray-600">{item.growth}</span>
+                    )}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {typeof item.enterprise === "boolean" ? (
+                      item.enterprise ? (
+                        <Check className="inline-block text-green-500" />
+                      ) : (
+                        <X className="inline-block text-red-500" />
+                      )
+                    ) : (
+                      <span className="text-gray-600">{item.enterprise}</span>
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </div>
       </div>
     </section>
