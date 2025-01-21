@@ -411,60 +411,61 @@ export function HeroGraphs() {
     }
   }
 
-  return (
-    <div className="flex flex-col h-full w-full p-3 space-y-3">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={JSON.stringify(data)}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          className="grid grid-cols-1 gap-3 h-full"
-        >
-          <Card className="shadow-lg rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
-            <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-2">
-              <CardTitle className="text-sm font-bold">
-                {topGraphIndex === 0 && "Monthly Revenue"}
-                {topGraphIndex === 1 && "Lease Expirations"}
-                {topGraphIndex === 2 && "Cashflow Summary"}
-                {topGraphIndex === 3 && "Investor Distribution Schedule"}
-                {topGraphIndex === 4 && "Rent Roll Analysis"}
+return (
+  <div className="flex flex-col h-full w-full p-2 space-y-2">
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={JSON.stringify(data)}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        className="grid grid-cols-1 gap-2 h-full"
+      >
+        {/* Top Card */}
+        <Card className="shadow-md rounded-md overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+          <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-1">
+            <CardTitle className="text-xs font-semibold">
+              {topGraphIndex === 0 && "Monthly Revenue"}
+              {topGraphIndex === 1 && "Lease Expirations"}
+              {topGraphIndex === 2 && "Cashflow Summary"}
+              {topGraphIndex === 3 && "Investor Distribution Schedule"}
+              {topGraphIndex === 4 && "Rent Roll Analysis"}
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-1 h-[200px]">{renderTopGraph()}</CardContent>
+        </Card>
+
+        {/* Bottom Cards */}
+        <div className="grid grid-cols-2 gap-2">
+          <Card className="shadow-md rounded-md overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+            <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-1">
+              <CardTitle className="text-xs font-semibold">
+                {bottomLeftGraphIndex === 0 && "Property Comparison Report"}
+                {bottomLeftGraphIndex === 1 && "NOI Trend"}
+                {bottomLeftGraphIndex === 2 && "Loan Underwriting Report"}
+                {bottomLeftGraphIndex === 3 && "Unit Mix"}
+                {bottomLeftGraphIndex === 4 && "Occupancy Status"}
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-2 h-[300px]">{renderTopGraph()}</CardContent>
+            <CardContent className="p-1 h-[150px]">{renderBottomGraph(bottomLeftGraphIndex)}</CardContent>
           </Card>
 
-          <div className="grid grid-cols-2 gap-3">
-            <Card className="shadow-lg rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
-              <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-2">
-                <CardTitle className="text-sm font-bold">
-                  {bottomLeftGraphIndex === 0 && "Property Comparison Report"}
-                  {bottomLeftGraphIndex === 1 && "NOI Trend"}
-                  {bottomLeftGraphIndex === 2 && "Loan Underwriting Report"}
-                  {bottomLeftGraphIndex === 3 && "Unit Mix"}
-                  {bottomLeftGraphIndex === 4 && "Occupancy Status"}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-2 h-[200px]">{renderBottomGraph(bottomLeftGraphIndex)}</CardContent>
-            </Card>
-
-            <Card className="shadow-lg rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
-              <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-2">
-                <CardTitle className="text-sm font-bold">
-                  {bottomRightGraphIndex === 0 && "Property Comparison Report"}
-                  {bottomRightGraphIndex === 1 && "NOI Trend"}
-                  {bottomRightGraphIndex === 2 && "Loan Underwriting Report"}
-                  {bottomRightGraphIndex === 3 && "Unit Mix"}
-                  {bottomRightGraphIndex === 4 && "Occupancy Status"}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-2 h-[200px]">{renderBottomGraph(bottomRightGraphIndex)}</CardContent>
-            </Card>
-          </div>
-        </motion.div>
-      </AnimatePresence>
-    </div>
-  )
+          <Card className="shadow-md rounded-md overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+            <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-1">
+              <CardTitle className="text-xs font-semibold">
+                {bottomRightGraphIndex === 0 && "Property Comparison Report"}
+                {bottomRightGraphIndex === 1 && "NOI Trend"}
+                {bottomRightGraphIndex === 2 && "Loan Underwriting Report"}
+                {bottomRightGraphIndex === 3 && "Unit Mix"}
+                {bottomRightGraphIndex === 4 && "Occupancy Status"}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-1 h-[150px]">{renderBottomGraph(bottomRightGraphIndex)}</CardContent>
+          </Card>
+        </div>
+      </motion.div>
+    </AnimatePresence>
+  </div>
+);
 }
-
