@@ -263,7 +263,7 @@ export function QuizSection({ onProductRecommended }: QuizSectionProps) {
                   <Button variant="outline" onClick={resetQuiz} className="text-sm md:text-base">
                     Start Over
                   </Button>
-                  <Button className="text-sm md:text-base">Learn More</Button>
+                  <Button className="text-sm md:text-base bg-black text-white hover:bg-slate-800 hover:text-white">Learn More</Button>
                 </div>
               </motion.div>
             )}
