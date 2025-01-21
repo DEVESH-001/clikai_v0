@@ -3,10 +3,10 @@
 
 import * as React from "react";
 import { Slider } from "@/components/ui/slider";
-import { Switch } from "@/components/ui/switch";
+
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Check, HelpCircle, X} from "lucide-react";
+import { Check,  X} from "lucide-react";
 import {
   Table,
   TableBody,
@@ -270,7 +270,7 @@ export function PricingSection() {
 
         {/* Pricing Cards */}
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {plans.map((plan, index) => (
+          {plans.map((plan) => (
             <Card
               key={plan.name}
               className={`relative overflow-hidden flex flex-col w-full border ${
