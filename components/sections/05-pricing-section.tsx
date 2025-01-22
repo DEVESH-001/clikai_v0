@@ -14,6 +14,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import Switcher1 from "../ui/switcher1";
 
 // Define the structure of a pricing plan
 interface Plan {
@@ -219,15 +220,16 @@ export function PricingSection() {
             Choose the perfect plan for your business
           </p>
         </div>
-
-        {/* Billing Toggle */}
+        <div className="flex items-center justify-center gap-3 mb-8">
+          <Switcher1 />
+        </div>
         {/* Billing Toggle */}
         <div className="flex items-center justify-center gap-3 mb-8">
           <Button
             onClick={() => setIsYearly(false)}
             className={`px-4 py-2 rounded-l-lg ${
               !isYearly
-                ? "bg-blue-600 text-white font-bold"
+                ? "bg-blue-600 text-white font-bold hover:bg-blue-600"
                 : "bg-gray-200 text-gray-600"
             }`}
           >
@@ -237,7 +239,7 @@ export function PricingSection() {
             onClick={() => setIsYearly(true)}
             className={`px-4 py-2 rounded-r-lg ${
               isYearly
-                ? "bg-blue-600 text-white font-bold"
+                ? "bg-blue-600 text-white font-bold hover:bg-blue-600"
                 : "bg-gray-200 text-gray-600"
             }`}
           >
@@ -246,26 +248,11 @@ export function PricingSection() {
           </Button>
         </div>
 
-        {/* Deals Slider */}
-        {/* <div className="max-w-2xl mx-auto mb-12">
-          <p className="text-center mb-3 text-lg text-gray-700">
-            I need{" "}
-            <span className="font-bold text-blue-600">{dealsPerMonth}</span>{" "}
-            deals per month
-          </p>
-          <Slider
-            value={[dealsPerMonth]}
-            onValueChange={(value) => setDealsPerMonth(value[0])}
-            max={40}
-            step={1}
-            className="py-4"
-          />
-          <div className="flex justify-between text-sm text-gray-600 px-1 mt-2">
-            {[0, 10, 20, 30, 40].map((value) => (
-              <span key={value}>{value}</span>
-            ))}
-          </div>
+        {/* 2 billing toggle button  */}
+        {/* <div className="flex items-center justify-center gap-3 mb-8">
+          <Switcher1 />
         </div> */}
+
         {/* Deals Slider */}
         <div className="max-w-2xl mx-auto mb-12">
           <p className="text-center mb-3 text-lg text-gray-700">
@@ -274,7 +261,7 @@ export function PricingSection() {
             deals per month
           </p>
           <div className="relative py-4">
-            {/* Slider with Color Fill */}
+            {/* New Slider */}
             <Slider
               value={[dealsPerMonth]}
               onValueChange={(value) => setDealsPerMonth(value[0])}
@@ -304,75 +291,6 @@ export function PricingSection() {
           </div>
         </div>
 
-        {/* Pricing Cards
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {plans.map((plan) => (
-            <Card
-              key={plan.name}
-              className={`relative overflow-hidden flex flex-col w-full border ${
-                highlightedPlan === plan.name
-                  ? "border-blue-500 shadow-lg bg-white"
-                  : "border-blue-200 bg-white/80"
-              } transition-all duration-300 hover:shadow-xl backdrop-blur-sm`}
-            >
-              {plan.ribbon && (
-                <div className="absolute top-0 right-0 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
-                  {plan.ribbon}
-                </div>
-              )}
-              <div className="p-6 flex flex-col h-full">
-                <h3 className="text-2xl font-bold mb-2 text-gray-900">
-                  {plan.name}
-                </h3>
-                <p className="text-gray-600 mb-4">{plan.description}</p>
-                <div className="mb-6">
-                  {plan.monthlyPrice ? (
-                    <div className="text-4xl font-bold text-gray-900">
-                      $
-                      {isYearly
-                        ? calculateYearlyPrice(plan.monthlyPrice)
-                        : plan.monthlyPrice}
-                      <span className="text-xl font-normal text-gray-600">
-                        /{isYearly ? "year" : "month"}
-                      </span>
-                      {plan.perDealPrice && (
-                        <span className="block text-lg font-normal text-gray-600 mt-1">
-                          + ${plan.perDealPrice}/deal
-                        </span>
-                      )}
-                    </div>
-                  ) : (
-                    <div className="text-3xl font-bold text-gray-900">
-                      {plan.price}
-                    </div>
-                  )}
-                  {isYearly && plan.monthlyPrice && (
-                    <p className="text-sm text-green-600 font-semibold mt-2">
-                      Save {calculateSavings(plan.monthlyPrice)}%
-                    </p>
-                  )}
-                </div>
-                <ul className="space-y-3 mb-6 flex-grow">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm">
-                      <Check className="h-5 w-5 text-green-500 flex-shrink-0" />
-                      <span className="text-gray-600">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button
-                  className={`w-full ${
-                    highlightedPlan === plan.name
-                      ? "bg-blue-600 hover:bg-blue-700"
-                      : "bg-blue-500 hover:bg-blue-600"
-                  } text-white font-bold py-2 px-4 rounded transition duration-300`}
-                >
-                  {plan.cta}
-                </Button>
-              </div>
-            </Card>
-          ))}
-        </div> */}
         {/* Pricing Cards */}
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {plans.map((plan) => (
