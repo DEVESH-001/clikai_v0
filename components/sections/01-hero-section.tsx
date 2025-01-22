@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[80vh] overflow-hidden pt-24 pb-0 mt-16 bg-gradient-to-b from-white via-blue-50 to-indigo-100">
+    <section className="relative min-h-[90vh] overflow-hidden pt-24 pb-0 mt-16 bg-gradient-to-b from-white via-blue-50 to-indigo-100">
       <div className="absolute inset-0 bg-[url('/noise.png')] opacity-5 mix-blend-soft-light"></div>
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-100/10 to-indigo-200/20"></div>
       <div className="container mx-auto px-4 relative z-10 lg:space-y-6">
@@ -42,7 +42,7 @@ export function HeroSection() {
             >
               <Button
                 size="lg"
-                className="bg-blue-600 text-white hover:bg-blue-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl text-base md:text-lg font-semibold px-6 py-3"
+                className="bg-blue-600 text-white hover:bg-blue-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl text-base md:text-lg font-semibold px-6 py-3 rounded-[8px]"
               >
                 Get Demo
               </Button>
