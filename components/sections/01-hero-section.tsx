@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import React from "react"
-import { Button } from "@/components/ui/button"
-import { HeroGraphs } from "@/components/hero-graphs"
-import { motion } from "framer-motion"
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { HeroGraphs } from "@/components/hero-graphs";
+import { motion } from "framer-motion";
 
 export function HeroSection() {
   return (
@@ -42,7 +42,7 @@ export function HeroSection() {
             >
               <Button
                 size="lg"
-                className="bg-blue-600 text-white hover:bg-blue-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl text-base md:text-lg font-semibold px-6 py-3 rounded-[8px]"
+                className="bg-blue-600 text-white hover:bg-blue-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl text-base md:text-lg font-semibold px-6 py-3"
               >
                 Get Demo
               </Button>
@@ -56,4 +56,3 @@ export function HeroSection() {
     </section>
   );
 }
-

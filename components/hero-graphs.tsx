@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import React, { useState, useEffect } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { motion, AnimatePresence } from "framer-motion"
+import React, { useState, useEffect } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -15,41 +15,78 @@ import {
   Title,
   Tooltip,
   Legend,
-} from "chart.js"
-import { Bar, Line, Pie } from "react-chartjs-2"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+} from "chart.js";
+import { Bar, Line, Pie } from "react-chartjs-2";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, ArcElement, Title, Tooltip, Legend)
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  PointElement,
+  LineElement,
+  ArcElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
-const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-const unitTypes = ["Studio", "1BR", "2BR", "3BR"]
-const leaseStatuses = ["Active", "Notice", "Vacant"]
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+const unitTypes = ["Studio", "1BR", "2BR", "3BR"];
+const leaseStatuses = ["Active", "Notice", "Vacant"];
 
-const getRandomData = (min: number, max: number) => Number((Math.random() * (max - min) + min).toFixed(0))
+const getRandomData = (min: number, max: number) =>
+  Number((Math.random() * (max - min) + min).toFixed(0));
 
-const COLORS = ["#3B82F6", "#10B981", "#F59E0B", "#EF4444", "#8B5CF6"]
+const COLORS = ["#3B82F6", "#10B981", "#F59E0B", "#EF4444", "#8B5CF6"];
 
 const generateMonthlyRevenue = () =>
   months.map((month) => ({
     month,
     revenue: getRandomData(50000, 100000),
-  }))
+  }));
 
 const generateLeaseExpirations = () =>
   months.map((month) => ({
     month,
     expirations: getRandomData(5, 20),
-  }))
+  }));
 
 const generateCashflowSummary = () => {
-  let income = getRandomData(60000, 100000)
-  let expenses = getRandomData(40000, 70000)
+  let income = getRandomData(60000, 100000);
+  let expenses = getRandomData(40000, 70000);
   return months.map((month) => {
-    income = Math.max(60000, Math.min(100000, income + getRandomData(-10000, 10000)))
-    expenses = Math.max(40000, Math.min(70000, expenses + getRandomData(-8000, 8000)))
-    return { month, income, expenses }
-  })
-}
+    income = Math.max(
+      60000,
+      Math.min(100000, income + getRandomData(-10000, 10000))
+    );
+    expenses = Math.max(
+      40000,
+      Math.min(70000, expenses + getRandomData(-8000, 8000))
+    );
+    return { month, income, expenses };
+  });
+};
 
 const generateInvestorDistribution = () =>
   months.map((month) => ({
@@ -57,7 +94,7 @@ const generateInvestorDistribution = () =>
     preferredReturn: getRandomData(10000, 20000),
     returnOfCapital: getRandomData(5000, 15000),
     profitSharing: getRandomData(2000, 10000),
-  }))
+  }));
 
 const generateRentRollAnalysis = () =>
   Array.from({ length: 20 }, (_, i) => ({
@@ -67,22 +104,30 @@ const generateRentRollAnalysis = () =>
     rent: getRandomData(1800, 3500),
     leaseTerm: `${getRandomData(6, 18)} months`,
     status: leaseStatuses[Math.floor(Math.random() * leaseStatuses.length)],
-  }))
+  }));
 
 const generatePropertyComparison = () => [
-  { property: "Property A", noi: getRandomData(500000, 1000000), capRate: (getRandomData(500, 800) / 100).toFixed(2) },
-  { property: "Property B", noi: getRandomData(500000, 1000000), capRate: (getRandomData(500, 800) / 100).toFixed(2) },
-]
+  {
+    property: "Property A",
+    noi: getRandomData(500000, 1000000),
+    capRate: (getRandomData(500, 800) / 100).toFixed(2),
+  },
+  {
+    property: "Property B",
+    noi: getRandomData(500000, 1000000),
+    capRate: (getRandomData(500, 800) / 100).toFixed(2),
+  },
+];
 
 const generateNOITrend = () => {
-  let noi = getRandomData(40000, 80000)
+  let noi = getRandomData(40000, 80000);
   return months.map((month) => {
-    const maxDeviation = noi * 0.2
-    const change = getRandomData(-maxDeviation, maxDeviation)
-    noi = Math.max(40000, Math.min(80000, noi + change))
-    return { month, noi }
-  })
-}
+    const maxDeviation = noi * 0.2;
+    const change = getRandomData(-maxDeviation, maxDeviation);
+    noi = Math.max(40000, Math.min(80000, noi + change));
+    return { month, noi };
+  });
+};
 
 const generateLoanUnderwriting = () => ({
   ltv: (getRandomData(60, 75) / 100).toFixed(2),
@@ -90,24 +135,24 @@ const generateLoanUnderwriting = () => ({
   debtYield: (getRandomData(800, 1200) / 100).toFixed(2),
   interestRate: (getRandomData(300, 600) / 100).toFixed(2),
   loanTerm: getRandomData(5, 30),
-})
+});
 
 const generateUnitMix = () =>
   unitTypes.map((type) => ({
     name: type,
     value: getRandomData(10, 40),
-  }))
+  }));
 
 const generateOccupancyStatus = () => [
   { name: "Occupied", value: getRandomData(70, 90) },
   { name: "Vacant", value: getRandomData(10, 30) },
-]
+];
 
 export function HeroGraphs() {
-  const [topGraphIndex, setTopGraphIndex] = useState(0)
-  const [bottomLeftGraphIndex, setBottomLeftGraphIndex] = useState(0)
-  const [bottomRightGraphIndex, setBottomRightGraphIndex] = useState(1)
-  const [data, ] = useState({
+  const [topGraphIndex, setTopGraphIndex] = useState(0);
+  const [bottomLeftGraphIndex, setBottomLeftGraphIndex] = useState(0);
+  const [bottomRightGraphIndex, setBottomRightGraphIndex] = useState(1);
+  const [data] = useState({
     monthlyRevenue: generateMonthlyRevenue(),
     leaseExpirations: generateLeaseExpirations(),
     cashflowSummary: generateCashflowSummary(),
@@ -118,19 +163,19 @@ export function HeroGraphs() {
     loanUnderwriting: generateLoanUnderwriting(),
     unitMix: generateUnitMix(),
     occupancyStatus: generateOccupancyStatus(),
-  })
+  });
 
   useEffect(() => {
     const graphRotationInterval = setInterval(() => {
-      setTopGraphIndex((prevIndex) => (prevIndex + 1) % 5)
-      setBottomLeftGraphIndex((prevIndex) => (prevIndex + 1) % 5)
-      setBottomRightGraphIndex((prevIndex) => (prevIndex + 1) % 5)
-    }, 7000)
+      setTopGraphIndex((prevIndex) => (prevIndex + 1) % 5);
+      setBottomLeftGraphIndex((prevIndex) => (prevIndex + 1) % 5);
+      setBottomRightGraphIndex((prevIndex) => (prevIndex + 1) % 5);
+    }, 7000);
 
     return () => {
-      clearInterval(graphRotationInterval)
-    }
-  }, [])
+      clearInterval(graphRotationInterval);
+    };
+  }, []);
 
   const formatCurrency = (value: number) =>
     new Intl.NumberFormat("en-US", {
@@ -138,7 +183,7 @@ export function HeroGraphs() {
       currency: "USD",
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
-    }).format(value)
+    }).format(value);
 
   const chartOptions = {
     responsive: true,
@@ -182,7 +227,7 @@ export function HeroGraphs() {
         },
       },
     },
-  }
+  };
 
   const renderTopGraph = () => {
     switch (topGraphIndex) {
@@ -201,7 +246,7 @@ export function HeroGraphs() {
             }}
             options={chartOptions}
           />
-        )
+        );
       case 1:
         return (
           <Bar
@@ -217,7 +262,7 @@ export function HeroGraphs() {
             }}
             options={chartOptions}
           />
-        )
+        );
       case 2:
         return (
           <Line
@@ -240,7 +285,7 @@ export function HeroGraphs() {
             }}
             options={chartOptions}
           />
-        )
+        );
       case 3:
         return (
           <Bar
@@ -249,17 +294,23 @@ export function HeroGraphs() {
               datasets: [
                 {
                   label: "Preferred Return",
-                  data: data.investorDistribution.map((item) => item.preferredReturn),
+                  data: data.investorDistribution.map(
+                    (item) => item.preferredReturn
+                  ),
                   backgroundColor: "rgba(59, 130, 246, 0.8)",
                 },
                 {
                   label: "Return of Capital",
-                  data: data.investorDistribution.map((item) => item.returnOfCapital),
+                  data: data.investorDistribution.map(
+                    (item) => item.returnOfCapital
+                  ),
                   backgroundColor: "rgba(16, 185, 129, 0.8)",
                 },
                 {
                   label: "Profit Sharing",
-                  data: data.investorDistribution.map((item) => item.profitSharing),
+                  data: data.investorDistribution.map(
+                    (item) => item.profitSharing
+                  ),
                   backgroundColor: "rgba(245, 158, 11, 0.8)",
                 },
               ],
@@ -276,7 +327,7 @@ export function HeroGraphs() {
               },
             }}
           />
-        )
+        );
       case 4:
         return (
           <ScrollArea className="h-[300px]">
@@ -303,19 +354,29 @@ export function HeroGraphs() {
               <TableBody>
                 {data.rentRollAnalysis.map((row) => (
                   <TableRow key={row.id}>
-                    <TableCell className="text-[12px] py-1">{row.unitName}</TableCell>
-                    <TableCell className="text-[12px] py-1">{row.unitType}</TableCell>
-                    <TableCell className="text-[12px] py-1">{formatCurrency(row.rent)}</TableCell>
-                    <TableCell className="text-[12px] py-1">{row.leaseTerm}</TableCell>
-                    <TableCell className="text-[12px] py-1">{row.status}</TableCell>
+                    <TableCell className="text-[12px] py-1">
+                      {row.unitName}
+                    </TableCell>
+                    <TableCell className="text-[12px] py-1">
+                      {row.unitType}
+                    </TableCell>
+                    <TableCell className="text-[12px] py-1">
+                      {formatCurrency(row.rent)}
+                    </TableCell>
+                    <TableCell className="text-[12px] py-1">
+                      {row.leaseTerm}
+                    </TableCell>
+                    <TableCell className="text-[12px] py-1">
+                      {row.status}
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </ScrollArea>
-        )
+        );
     }
-  }
+  };
 
   const renderBottomGraph = (index: number) => {
     switch (index) {
@@ -335,7 +396,9 @@ export function HeroGraphs() {
                 {
                   type: "bar" as const,
                   label: "Cap Rate",
-                  data: data.propertyComparison.map((item) => Number.parseFloat(item.capRate)),
+                  data: data.propertyComparison.map((item) =>
+                    Number.parseFloat(item.capRate)
+                  ),
                   borderColor: "rgb(16, 185, 129)",
                   backgroundColor: "rgba(16, 185, 129, 0.8)",
                   yAxisID: "y1",
@@ -376,7 +439,7 @@ export function HeroGraphs() {
               },
             }}
           />
-        )
+        );
       case 1:
         return (
           <Line
@@ -393,40 +456,56 @@ export function HeroGraphs() {
             }}
             options={chartOptions}
           />
-        )
+        );
       case 2:
         return (
           <Table>
             <TableHeader className="bg-blue-100">
               <TableRow>
-                <TableHead className="text-[12px] font-semibold py-2 text-blue-800 font-sans">Metric</TableHead>
-                <TableHead className="text-[12px] font-semibold py-2 text-blue-800 font-sans">Value</TableHead>
+                <TableHead className="text-[12px] font-semibold py-2 text-blue-800 font-sans">
+                  Metric
+                </TableHead>
+                <TableHead className="text-[12px] font-semibold py-2 text-blue-800 font-sans">
+                  Value
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               <TableRow>
                 <TableCell className="text-[12px] py-1">LTV</TableCell>
-                <TableCell className="text-[12px] py-1">{data.loanUnderwriting.ltv}</TableCell>
+                <TableCell className="text-[12px] py-1">
+                  {data.loanUnderwriting.ltv}
+                </TableCell>
               </TableRow>
               <TableRow>
                 <TableCell className="text-[12px] py-1">DSCR</TableCell>
-                <TableCell className="text-[12px] py-1">{data.loanUnderwriting.dscr}</TableCell>
+                <TableCell className="text-[12px] py-1">
+                  {data.loanUnderwriting.dscr}
+                </TableCell>
               </TableRow>
               <TableRow>
                 <TableCell className="text-[12px] py-1">Debt Yield</TableCell>
-                <TableCell className="text-[12px] py-1">{data.loanUnderwriting.debtYield}</TableCell>
+                <TableCell className="text-[12px] py-1">
+                  {data.loanUnderwriting.debtYield}
+                </TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="text-[12px] py-1">Interest Rate</TableCell>
-                <TableCell className="text-[12px] py-1">{data.loanUnderwriting.interestRate}%</TableCell>
+                <TableCell className="text-[12px] py-1">
+                  Interest Rate
+                </TableCell>
+                <TableCell className="text-[12px] py-1">
+                  {data.loanUnderwriting.interestRate}%
+                </TableCell>
               </TableRow>
               <TableRow>
                 <TableCell className="text-[12px] py-1">Loan Term</TableCell>
-                <TableCell className="text-[12px] py-1">{data.loanUnderwriting.loanTerm} years</TableCell>
+                <TableCell className="text-[12px] py-1">
+                  {data.loanUnderwriting.loanTerm} years
+                </TableCell>
               </TableRow>
             </TableBody>
           </Table>
-        )
+        );
       case 3:
         return (
           <Pie
@@ -441,7 +520,7 @@ export function HeroGraphs() {
             }}
             options={chartOptions}
           />
-        )
+        );
       case 4:
         return (
           <Pie
@@ -456,12 +535,12 @@ export function HeroGraphs() {
             }}
             options={chartOptions}
           />
-        )
+        );
     }
-  }
+  };
 
   return (
-    <div className="flex flex-col h-full w-full p-2 space-y-1 relative z-10 rounded-lg">
+    <div className="flex flex-col h-full w-full  space-y-1 relative z-10 rounded-lg">
       <AnimatePresence mode="wait">
         <motion.div
           key={JSON.stringify(data)}
@@ -471,8 +550,8 @@ export function HeroGraphs() {
           transition={{ duration: 0.5 }}
           className="grid grid-cols-1 gap-3 h-full"
         >
-          <Card className="shadow-lg rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl mb-2 bg-white/80 backdrop-blur-sm">
-            <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-2">
+          <Card className="shadow-lg rounded-[8px] overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl mb-2 bg-white/80 backdrop-blur-sm">
+            <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-2 ">
               <CardTitle className="text-sm font-bold">
                 {topGraphIndex === 0 && "Monthly Revenue"}
                 {topGraphIndex === 1 && "Lease Expirations"}
@@ -481,12 +560,14 @@ export function HeroGraphs() {
                 {topGraphIndex === 4 && "Rent Roll Analysis"}
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-2 h-[200px]">{renderTopGraph()}</CardContent>
+            <CardContent className="p-2 h-[200px] ">
+              {renderTopGraph()}
+            </CardContent>
           </Card>
 
           <div className="grid grid-cols-2 gap-3">
-            <Card className="shadow-lg rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl bg-white/80 backdrop-blur-sm">
-              <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-2">
+            <Card className="shadow-lg rounded-[8px] overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl bg-white/80 backdrop-blur-sm">
+              <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-2 ">
                 <CardTitle className="text-sm font-bold">
                   {bottomLeftGraphIndex === 0 && "Property Comparison Report"}
                   {bottomLeftGraphIndex === 1 && "NOI Trend"}
@@ -495,10 +576,12 @@ export function HeroGraphs() {
                   {bottomLeftGraphIndex === 4 && "Occupancy Status"}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-2 h-[180px]">{renderBottomGraph(bottomLeftGraphIndex)}</CardContent>
+              <CardContent className="p-2 h-[180px]">
+                {renderBottomGraph(bottomLeftGraphIndex)}
+              </CardContent>
             </Card>
 
-            <Card className="shadow-lg rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl bg-white/80 backdrop-blur-sm">
+            <Card className="shadow-lg rounded-[8px] overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl bg-white/80 backdrop-blur-sm">
               <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-2">
                 <CardTitle className="text-sm font-bold">
                   {bottomRightGraphIndex === 0 && "Property Comparison Report"}
@@ -508,12 +591,13 @@ export function HeroGraphs() {
                   {bottomRightGraphIndex === 4 && "Occupancy Status"}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-2 h-[180px]">{renderBottomGraph(bottomRightGraphIndex)}</CardContent>
+              <CardContent className="p-2 h-[180px]">
+                {renderBottomGraph(bottomRightGraphIndex)}
+              </CardContent>
             </Card>
           </div>
         </motion.div>
       </AnimatePresence>
     </div>
-  )
+  );
 }
-

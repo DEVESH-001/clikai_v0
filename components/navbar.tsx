@@ -18,7 +18,7 @@ import { Menu, X, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { imageUrls } from "@/utils/imageUrls";
-//import { GeistSans } from "geist/font/sans"
+//import { GeistSans } from "geist/font/sans";
 
 const navItemClass = "tracking-wider text-sm uppercase font-medium";
 
@@ -137,7 +137,9 @@ export function Navbar() {
 
   return (
     <>
-      <div className={`fixed top-0 left-0 right-0 z-50 bg-white `}>
+      <div
+        className={`fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-90 backdrop-blur-sm`}
+      >
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <Link href="/" className="flex items-center space-x-2">
             <Image
@@ -150,16 +152,16 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex flex-1 justify-center ">
+          <div className="hidden lg:flex flex-1 justify-center">
             <NavigationMenu className="hidden lg:flex flex-1 justify-center">
               <NavigationMenuList className="space-x-1">
                 <NavigationMenuItem value="products">
                   <NavigationMenuTrigger className={navItemClass}>
                     PRODUCTS
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="bg-white">
-                    <div className="w-[600px] p-4 md:p-6">
-                      <div className="grid grid-cols-2 gap-4">
+                  <NavigationMenuContent>
+                    <div className="w-[600px] p-4 md:p-6 bg-white">
+                      <div className="grid grid-cols-2 gap-4 bg-white">
                         {products.map((category) => (
                           <div key={category.title} className="space-y-2">
                             <h3 className="text-lg font-semibold text-blue-600">
@@ -199,8 +201,8 @@ export function Navbar() {
                   <NavigationMenuTrigger className={navItemClass}>
                     SERVICES
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="bg-white">
-                    <div className="w-[800px] p-4 md:p-6">
+                  <NavigationMenuContent>
+                    <div className="w-[800px] p-4 md:p-6 bg-white">
                       <div className="grid grid-cols-2 gap-6">
                         {services.map((category) => (
                           <div key={category.title} className="space-y-2">
@@ -224,16 +226,6 @@ export function Navbar() {
                       </div>
                     </div>
                   </NavigationMenuContent>
-                </NavigationMenuItem>
-
-                <NavigationMenuItem>
-                  <Link href="/pricing" legacyBehavior passHref>
-                    <NavigationMenuLink
-                      className={`${navigationMenuTriggerStyle()} ${navItemClass}`}
-                    >
-                      PRICING
-                    </NavigationMenuLink>
-                  </Link>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
@@ -263,7 +255,7 @@ export function Navbar() {
           </Button>
 
           {/* Right Side Actions */}
-          <div className="hidden lg:flex items-center space-x-4 ">
+          <div className="hidden lg:flex items-center space-x-4">
             <Link
               href="/login"
               className={`${navigationMenuTriggerStyle()} ${navItemClass}`}
@@ -272,7 +264,7 @@ export function Navbar() {
             </Link>
             <Link href="/get-started">
               <Button
-                className={`bg-blue-600 text-white hover:bg-blue-700 rounded-[8px] ${navItemClass}`}
+                className={`bg-blue-600 text-white hover:bg-blue-700 ${navItemClass} rounded-[8px]`}
               >
                 GET STARTED
               </Button>
@@ -293,7 +285,7 @@ export function Navbar() {
             <div className="px-4 pt-2 pb-3 space-y-1">
               <Link
                 href="#"
-                className={`block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md ${navItemClass}`}
+                className={`block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md ${navItemClass} `}
               >
                 PRODUCTS
               </Link>
@@ -302,12 +294,6 @@ export function Navbar() {
                 className={`block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md ${navItemClass}`}
               >
                 SERVICES
-              </Link>
-              <Link
-                href="/pricing"
-                className={`block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md ${navItemClass}`}
-              >
-                PRICING
               </Link>
               <Link
                 href="/why-clik-ai"
