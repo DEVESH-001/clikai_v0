@@ -214,8 +214,7 @@ export function Navbar() {
                                 <li key={item}>
                                   <Link
                                     href="#"
-                                    className="text-sm text-gray-600 hover:text-blue-600 hover:underline"
-                                  >
+                                    className="text-sm text-gray-600 hover:text-blue-600 hover:underline">
                                     {item}
                                   </Link>
                                 </li>
