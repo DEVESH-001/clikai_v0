@@ -44,7 +44,7 @@ export function Footer() {
                 placeholder="Enter your email"
                 className="mr-2 text-xs sm:text-sm bg-white text-gray-800"
               />
-              <Button type="submit" className="text-xs sm:text-sm bg-blue-500 hover:bg-blue-600 text-white">
+              <Button type="submit" className="text-xs sm:text-sm bg-blue-500 hover:bg-blue-600 text-white rounded-[8px]">
                 Subscribe
               </Button>
             </form>

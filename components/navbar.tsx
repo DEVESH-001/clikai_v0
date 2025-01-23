@@ -264,7 +264,7 @@ export function Navbar() {
             </Link>
             <Link href="/get-started">
               <Button
-                className={`bg-blue-600 text-white hover:bg-blue-700 ${navItemClass}`}
+                className={`bg-blue-600 text-white hover:bg-blue-700 ${navItemClass} rounded-[8px]`}
               >
                 GET STARTED
               </Button>

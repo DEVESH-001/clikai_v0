@@ -42,7 +42,7 @@ export function HeroSection() {
             >
               <Button
                 size="lg"
-                className="bg-blue-600 text-white hover:bg-blue-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl text-base md:text-lg font-semibold px-6 py-3"
+                className="bg-blue-600 text-white hover:bg-blue-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl text-base md:text-lg font-semibold px-6 py-3 rounded-[8px]"
               >
                 Get Demo
               </Button>

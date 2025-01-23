@@ -20,8 +20,7 @@ import {
   CheckCircle2,
   Clock,
   FileText,
-  LineChart,
-  Upload,
+
 } from "lucide-react";
 
 // Features data
@@ -55,28 +54,28 @@ const features = [
 ];
 
 
-const workflowSteps = [
-  {
-    title: "Upload Documents",
-    description: "Drag-and-drop Operating Statements and Rent Rolls",
-    icon: Upload,
-  },
-  {
-    title: "Data Extraction",
-    description: "Watch AutoUW parse and extract critical data in seconds",
-    icon: Bot,
-  },
-  {
-    title: "Review & Validate",
-    description: "Verify extracted data with side-by-side document viewing",
-    icon: CheckCircle2,
-  },
-  {
-    title: "Download Results",
-    description: "Export underwriting models in lender-preferred formats",
-    icon: LineChart,
-  },
-];
+// const workflowSteps = [
+//   {
+//     title: "Upload Documents",
+//     description: "Drag-and-drop Operating Statements and Rent Rolls",
+//     icon: Upload,
+//   },
+//   {
+//     title: "Data Extraction",
+//     description: "Watch AutoUW parse and extract critical data in seconds",
+//     icon: Bot,
+//   },
+//   {
+//     title: "Review & Validate",
+//     description: "Verify extracted data with side-by-side document viewing",
+//     icon: CheckCircle2,
+//   },
+//   {
+//     title: "Download Results",
+//     description: "Export underwriting models in lender-preferred formats",
+//     icon: LineChart,
+//   },
+// ];
 
 // Benefits data
 const benefits = [
@@ -238,7 +237,7 @@ export default function AutoUWPage() {
               >
                 <Button
                   size="lg"
-                  className="bg-blue-600 text-white hover:bg-blue-700 transform hover:scale-105 transition-all duration-200"
+                  className="bg-blue-600 text-white hover:bg-blue-700 transform hover:scale-105 transition-all duration-200 rounded-[8px]"
                 >
                   Start Automating Now
                   <ArrowUpRight className="ml-2 h-4 w-4" />
@@ -528,7 +527,7 @@ export default function AutoUWPage() {
                       ))}
                     </ul>
                     <Button
-                      className={`w-full ${
+                      className={`w-full rounded-[8px] ${
                         index === 1
                           ? "bg-white text-blue-600 hover:bg-blue-50"
                           : "bg-blue-600 text-white hover:bg-blue-700"
@@ -588,7 +587,7 @@ export default function AutoUWPage() {
               <Button
                 size="lg"
                 variant="secondary"
-                className="bg-white text-blue-600 hover:bg-blue-50 transform hover:scale-105 transition-all duration-200"
+                className="bg-white text-blue-600 hover:bg-blue-50 transform hover:scale-105 transition-all duration-200 rounded-[8px]"
               >
                 Request a Demo
                 <ArrowUpRight className="ml-2 h-4 w-4" />
