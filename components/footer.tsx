@@ -27,7 +27,9 @@ export function Footer() {
         <div className="grid md:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
           {/* Left Side */}
           <div>
-            <div className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Clik.ai</div>
+            <div className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
+              Clik.ai
+            </div>
             <p className="text-xs sm:text-sm md:text-base text-gray-300 mb-3 sm:mb-4">
               325 Front St W. Suite 400. Toronto, Ontario M5V 2Y1, CA
             </p>
@@ -44,7 +46,10 @@ export function Footer() {
                 placeholder="Enter your email"
                 className="mr-2 text-xs sm:text-sm bg-white text-gray-800"
               />
-              <Button type="submit" className="text-xs sm:text-sm bg-blue-500 hover:bg-blue-600 text-white rounded-[8px]">
+              <Button
+                type="submit"
+                className="text-xs sm:text-sm bg-blue-500 hover:bg-blue-600 text-white rounded-[8px]"
+              >
                 Subscribe
               </Button>
             </form>
@@ -54,7 +59,9 @@ export function Footer() {
         {/* Footer Links */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-12 mb-8 sm:mb-12">
           <div>
-            <h4 className="font-semibold mb-2 sm:mb-3 text-xs sm:text-sm md:text-base text-gray-300">Products</h4>
+            <h4 className="font-semibold mb-2 sm:mb-3 text-xs sm:text-sm md:text-base text-gray-300">
+              Products
+            </h4>
             <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
               <li>
                 <Link href="#" className="text-gray-300 hover:text-blue-300">
@@ -89,7 +96,9 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-2 sm:mb-3 text-xs sm:text-sm md:text-base text-gray-300">Services</h4>
+            <h4 className="font-semibold mb-2 sm:mb-3 text-xs sm:text-sm md:text-base text-gray-300">
+              Services
+            </h4>
             <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
               <li>
                 <Link href="#" className="text-gray-300 hover:text-blue-300">
@@ -114,7 +123,9 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-2 sm:mb-3 text-xs sm:text-sm md:text-base text-gray-300">Company</h4>
+            <h4 className="font-semibold mb-2 sm:mb-3 text-xs sm:text-sm md:text-base text-gray-300">
+              Company
+            </h4>
             <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
               <li>
                 <Link href="#" className="text-gray-300 hover:text-blue-300">
@@ -134,7 +145,9 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-2 sm:mb-3 text-xs sm:text-sm md:text-base text-gray-300">Resources</h4>
+            <h4 className="font-semibold mb-2 sm:mb-3 text-xs sm:text-sm md:text-base text-gray-300">
+              Resources
+            </h4>
             <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
               <li>
                 <Link href="#" className="text-gray-300 hover:text-blue-300">
@@ -168,7 +181,7 @@ export function Footer() {
             <Link href="#" className="hover:text-blue-300">
               Privacy Policy
             </Link>
-            <Link href="#" className="hover:text-blue-300">
+            <Link href="/terms-and-conditions" className="hover:text-blue-300">
               Terms & Conditions
             </Link>
           </div>
@@ -176,6 +189,6 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
 
