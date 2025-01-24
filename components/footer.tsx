@@ -40,11 +40,11 @@ export function Footer() {
             <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-300 mb-3 sm:mb-4">
               Subscribe to our Blogs
             </h3>
-            <form className="flex">
+            <form className="flex ">
               <Input
                 type="email"
                 placeholder="Enter your email"
-                className="mr-2 text-xs sm:text-sm bg-white text-gray-800"
+                className="mr-2 text-xs sm:text-sm bg-white text-gray-800 rounded-[8px]"
               />
               <Button
                 type="submit"
@@ -136,7 +136,10 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/careers" className="text-gray-300 hover:text-blue-300">
+                <Link
+                  href="/careers"
+                  className="text-gray-300 hover:text-blue-300"
+                >
                   Careers
                 </Link>
               </li>
@@ -156,7 +159,10 @@ export function Footer() {
             </h4>
             <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
               <li>
-              <Link href="https://clik-ai.gitbook.io/" className="text-gray-300 hover:text-blue-300">
+                <Link
+                  href="https://clik-ai.gitbook.io/"
+                  className="text-gray-300 hover:text-blue-300"
+                >
                   Documentation
                 </Link>
               </li>

@@ -64,7 +64,7 @@ const benefits = [
     icon: Zap,
     title: "Cutting-edge Technology",
     description:
-      "Stay at the forefront of innovation with access to the latest tools and technologies.",
+      "Stay at the forefront of innovation with access to the latest tools & tech.",
   },
   {
     icon: Coffee,
@@ -106,8 +106,9 @@ export default function CareersPage() {
           className="text-xl text-gray-600 mb-12 max-w-3xl"
         >
           Join our team of innovators and help shape the future of AI-powered
-          commercial real estate solutions. We&apos;re always looking for talented
-          individuals who are passionate about technology and real estate.
+          commercial real estate solutions. We&apos;re always looking for
+          talented individuals who are passionate about technology and real
+          estate.
         </motion.p>
 
         <motion.h2
@@ -134,7 +135,7 @@ export default function CareersPage() {
                 <p className="text-gray-600 mb-4">
                   {job.department} | {job.location} | {job.type}
                 </p>
-                <Button className="w-full">
+                <Button className="w-full  bg-black text-white hover:text-white hover:bg-gray-800">
                   Apply Now
                   <ArrowUpRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -183,8 +184,9 @@ export default function CareersPage() {
             Don&apos;t See a Perfect Fit?
           </h2>
           <p className="text-xl text-gray-600 mb-6">
-            We&apos;re always on the lookout for talented individuals. Send us your
-            resume, and we&apos;ll keep you in mind for future opportunities.
+            We&apos;re always on the lookout for talented individuals. Send us
+            your resume, and we&apos;ll keep you in mind for future
+            opportunities.
           </p>
           <Button
             size="lg"
