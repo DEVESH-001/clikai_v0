@@ -128,17 +128,23 @@ export function Footer() {
             </h4>
             <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
               <li>
-                <Link href="#" className="text-gray-300 hover:text-blue-300">
+                <Link
+                  href="/about-us"
+                  className="text-gray-300 hover:text-blue-300"
+                >
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-gray-300 hover:text-blue-300">
+                <Link href="/careers" className="text-gray-300 hover:text-blue-300">
                   Careers
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-gray-300 hover:text-blue-300">
+                <Link
+                  href="/contact-us"
+                  className="text-gray-300 hover:text-blue-300"
+                >
                   Contact Us
                 </Link>
               </li>
@@ -150,7 +156,7 @@ export function Footer() {
             </h4>
             <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
               <li>
-                <Link href="#" className="text-gray-300 hover:text-blue-300">
+              <Link href="https://clik-ai.gitbook.io/" className="text-gray-300 hover:text-blue-300">
                   Documentation
                 </Link>
               </li>
@@ -178,7 +184,7 @@ export function Footer() {
         {/* Copyright and legal links */}
         <div className="flex flex-col sm:flex-row justify-between items-center text-xs sm:text-sm text-gray-300">
           <div className="flex flex-wrap justify-center sm:justify-start space-x-2 sm:space-x-4 mb-2 sm:mb-0">
-            <Link href="#" className="hover:text-blue-300">
+            <Link href="/privacy-policy" className="hover:text-blue-300">
               Privacy Policy
             </Link>
             <Link href="/terms-and-conditions" className="hover:text-blue-300">
