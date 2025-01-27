@@ -174,7 +174,10 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-gray-300 hover:text-blue-300">
+                <Link
+                  href="https://knowledgecenter.clik.ai/"
+                  className="text-gray-300 hover:text-blue-300"
+                >
                   Knowledge Base
                 </Link>
               </li>
