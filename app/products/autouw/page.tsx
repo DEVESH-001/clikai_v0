@@ -353,23 +353,24 @@ export default function AutoUWPage() {
 
             <Card className="p-6 bg-white/90 backdrop-blur-sm">
               <h3 className="text-xl font-bold mb-4">Download Results</h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid  gap-4">
                 <div className="relative aspect-[16/9] rounded-lg overflow-hidden">
                   <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Download%20Resut%20OS-0kFpAjuOOZlY1GnRceiIVfldHJtTr0.png"
+                    src={"/images/DownloadResults.png"}
                     alt="Operating Statement Results"
-                    fill
-                    className="object-cover"
+                    className="object-cover rounded-lg shadow-2xl"
+                    width={1000}
+                    height={1000}
                   />
                 </div>
-                <div className="relative aspect-[16/9] rounded-lg overflow-hidden">
+                {/* <div className="relative aspect-[16/9] rounded-lg overflow-hidden">
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Download%20Result%20RR-tsNeheSlh4FrRjW3hD49XWhh4QW17F.png"
                     alt="Rent Roll Results"
                     fill
                     className="object-cover"
                   />
-                </div>
+                </div> */}
               </div>
               <p className="mt-4 text-gray-600">
                 Export comprehensive analysis in your preferred format
@@ -455,8 +456,8 @@ export default function AutoUWPage() {
           </div>
           <Card className="max-w-4xl mx-auto p-8 bg-white/90 backdrop-blur-sm">
             <blockquote className="text-xl text-gray-700 italic mb-4">
-              &quot;AutoUW reduced our underwriting time by 65% and enabled us to
-              process 30 deals per month with minimal effort.&quot;
+              &quot;AutoUW reduced our underwriting time by 65% and enabled us
+              to process 30 deals per month with minimal effort.&quot;
             </blockquote>
             <div className="flex items-center gap-4">
               <div>
