@@ -11,12 +11,11 @@
  * - Grouped links for easy navigation
  */
 
-"use client"
+"use client";
 
-
-import Link from "next/link"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
+import Link from "next/link";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 // Main Footer component
 export function Footer() {
@@ -167,7 +166,10 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-gray-300 hover:text-blue-300">
+                <Link
+                  href="https://clik-ai.gitbook.io/smart-extract-documentation/api-reference/"
+                  className="text-gray-300 hover:text-blue-300"
+                >
                   API Reference
                 </Link>
               </li>
@@ -203,4 +205,3 @@ export function Footer() {
     </footer>
   );
 }
-
