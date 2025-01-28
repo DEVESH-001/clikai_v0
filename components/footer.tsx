@@ -1,16 +1,3 @@
-/**
- * Footer Component
- *
- * This component renders the main footer for the Clik.ai website.
- * It includes various sections such as company information, newsletter signup,
- * product and service links, and legal information.
- *
- * Features:
- * - Responsive layout
- * - Newsletter signup form
- * - Grouped links for easy navigation
- */
-
 "use client";
 
 import Link from "next/link";
@@ -26,9 +13,11 @@ export function Footer() {
         <div className="grid md:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
           {/* Left Side */}
           <div>
-            <div className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-              Clik.ai
-            </div>
+            <Link href="/" className="text-2xl font-bold text-white">
+              <div className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
+                Clik.ai
+              </div>
+            </Link>
             <p className="text-xs sm:text-sm md:text-base text-gray-300 mb-3 sm:mb-4">
               325 Front St W. Suite 400. Toronto, Ontario M5V 2Y1, CA
             </p>
@@ -39,7 +28,7 @@ export function Footer() {
             <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-300 mb-3 sm:mb-4">
               Subscribe to our Blogs
             </h3>
-            <form className="flex ">
+            <form className="flex">
               <Input
                 type="email"
                 placeholder="Enter your email"
@@ -56,12 +45,13 @@ export function Footer() {
         </div>
 
         {/* Footer Links */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-12 mb-8 sm:mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-4 gap-8 sm:gap-12 mb-8 sm:mb-12">
+          {/* Products Column */}
           <div>
-            <h4 className="font-semibold mb-2 sm:mb-3 text-xs sm:text-sm md:text-base text-gray-300">
+            <h4 className="font-semibold mb-2 sm:mb-3 text-xs sm:text-sm md:text-base text-gray-300 text-center sm:text-left">
               Products
             </h4>
-            <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
+            <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-center sm:text-left">
               <li>
                 <Link href="#" className="text-gray-300 hover:text-blue-300">
                   AutoUW
@@ -94,69 +84,88 @@ export function Footer() {
               </li>
             </ul>
           </div>
-          <div>
-            <h4 className="font-semibold mb-2 sm:mb-3 text-xs sm:text-sm md:text-base text-gray-300">
+
+          {/* Services Column - Centered and spans 2 columns */}
+          <div className="col-span-1 sm:col-span-2 flex flex-col items-center">
+            <h4 className="font-semibold mb-2 sm:mb-3 text-xs sm:text-sm md:text-base text-gray-300 text-center">
               Services
             </h4>
-            <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
-              <li>
-                <Link href="#" className="text-gray-300 hover:text-blue-300">
-                  Loan Servicing & Administration
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-gray-300 hover:text-blue-300">
-                  Deal Underwriting & Financial Modeling
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-gray-300 hover:text-blue-300">
-                  Lease & Data Administration
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-gray-300 hover:text-blue-300">
-                  Consulting & Technology Solutions
-                </Link>
-              </li>
-            </ul>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-xl mx-auto">
+              {/* Left Services Column */}
+              <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-center md:text-left">
+                <li>
+                  <Link href="#" className="text-gray-300 hover:text-blue-300">
+                    Loan Servicing & Administration
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-gray-300 hover:text-blue-300">
+                    Financial Services & Analysis (FSA)
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-gray-300 hover:text-blue-300">
+                    Disbursement & PCNA Support
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-gray-300 hover:text-blue-300">
+                    Legacy Data Migration Services
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-gray-300 hover:text-blue-300">
+                    Deal Underwriting & Financial Modeling
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-gray-300 hover:text-blue-300">
+                    Cash Flow Modeling & Rent Roll Analysis
+                  </Link>
+                </li>
+              </ul>
+              {/* Right Services Column */}
+              <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-center md:text-left">
+                <li>
+                  <Link href="#" className="text-gray-300 hover:text-blue-300">
+                    Underwriting & Due Diligence Support
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-gray-300 hover:text-blue-300">
+                    Custom Financial Model Development
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-gray-300 hover:text-blue-300">
+                    Lease & Data Administration
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-gray-300 hover:text-blue-300">
+                    Lease Abstraction & Audit
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-gray-300 hover:text-blue-300">
+                    Appraisal & OM Data Digitization
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-gray-300 hover:text-blue-300">
+                    CRE Technology Consulting
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
+
+          {/* Resources Column */}
           <div>
-            <h4 className="font-semibold mb-2 sm:mb-3 text-xs sm:text-sm md:text-base text-gray-300">
-              Company
-            </h4>
-            <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
-              <li>
-                <Link
-                  href="/about-us"
-                  className="text-gray-300 hover:text-blue-300"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/careers"
-                  className="text-gray-300 hover:text-blue-300"
-                >
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact-us"
-                  className="text-gray-300 hover:text-blue-300"
-                >
-                  Contact Us
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-2 sm:mb-3 text-xs sm:text-sm md:text-base text-gray-300">
+            <h4 className="font-semibold mb-2 sm:mb-3 text-xs sm:text-sm md:text-base text-gray-300 text-center sm:text-left">
               Resources
             </h4>
-            <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
+            <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-center sm:text-left">
               <li>
                 <Link
                   href="https://clik-ai.gitbook.io/"
@@ -182,7 +191,10 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/posts" className="text-gray-300 hover:text-blue-300">
+                <Link
+                  href="/posts"
+                  className="text-gray-300 hover:text-blue-300"
+                >
                   Blog
                 </Link>
               </li>
@@ -201,8 +213,22 @@ export function Footer() {
             <Link href="/terms-and-conditions" className="hover:text-blue-300">
               Terms & Conditions
             </Link>
+            <Link
+              href="/contact-us"
+              className="text-gray-300 hover:text-blue-300"
+            >
+              Contact Us
+            </Link>
+            <Link
+              href="https://www.linkedin.com/company/cliktechnologies/jobs/"
+              target="_blank"
+              className="text-gray-300 hover:text-blue-300"
+            >
+              Careers
+            </Link>
           </div>
-          <div>© 2025 Clik.ai. All rights reserved</div>
+
+          <div>© {new Date().getFullYear()} Clik.ai. All rights reserved</div>
         </div>
       </div>
     </footer>

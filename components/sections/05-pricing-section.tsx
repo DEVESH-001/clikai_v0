@@ -168,31 +168,33 @@ export function PricingSection() {
     setIsYearly((prev) => !prev);
   };
 
-   const [dealsPerMonth, setDealsPerMonth] = React.useState(10);
-    const [isYearly, setIsYearly] = React.useState(false);
-  
-    const getHighlightedPlan = (deals: number) => {
-      if (deals <= 4) return "Self-Service";
-      if (deals <= 20) return "Growth";
-      return "Enterprise";
-    };
-  
-    const highlightedPlan = getHighlightedPlan(dealsPerMonth);
-  
-    const calculateYearlyPrice = (monthlyPrice: number) => {
-      return (monthlyPrice * 10).toFixed(0);
-    };
-  
-    const calculateSavings = (monthlyPrice: number) => {
-      return (
-        ((monthlyPrice * 12 - monthlyPrice * 10) / (monthlyPrice * 12)) *
-        100
-      ).toFixed(0);
-    };
-  
+  const [dealsPerMonth, setDealsPerMonth] = React.useState(10);
+  const [isYearly, setIsYearly] = React.useState(false);
+
+  const getHighlightedPlan = (deals: number) => {
+    if (deals <= 4) return "Self-Service";
+    if (deals <= 20) return "Growth";
+    return "Enterprise";
+  };
+
+  const highlightedPlan = getHighlightedPlan(dealsPerMonth);
+
+  const calculateYearlyPrice = (monthlyPrice: number) => {
+    return (monthlyPrice * 10).toFixed(0);
+  };
+
+  const calculateSavings = (monthlyPrice: number) => {
+    return (
+      ((monthlyPrice * 12 - monthlyPrice * 10) / (monthlyPrice * 12)) *
+      100
+    ).toFixed(0);
+  };
 
   return (
-    <section className="pt-16 pb-24 relative overflow-hidden bg-gradient-to-b from-blue-50 via-purple-50 to-indigo-50">
+    <section
+      id="pricing"
+      className="pt-16 pb-24 relative overflow-hidden bg-gradient-to-b from-blue-50 via-purple-50 to-indigo-50"
+    >
       {/* Abstract background pattern with curvy lines */}
       <div className="absolute inset-0 overflow-hidden">
         <svg
@@ -268,7 +270,7 @@ export function PricingSection() {
           </label>
         </div>
 
-     {/* Deals Slider */}
+        {/* Deals Slider */}
         <div className="max-w-2xl mx-auto mb-12">
           <p className="text-center mb-3 text-lg text-gray-700">
             I need{" "}
@@ -308,144 +310,144 @@ export function PricingSection() {
 
         {/* Pricing Cards */}
 
-         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-           {plans.map((plan) => (
-             <Card
-               key={plan.name}
-               className={`relative overflow-hidden flex flex-col w-full border rounded-lg ${
-                 highlightedPlan === plan.name
-                   ? "border-4 border-blue-500 shadow-lg bg-white scale-105"
-                   : "border border-blue-200 bg-white/80"
-               } transition-all duration-300 hover:shadow-xl backdrop-blur-sm`}
-             >
-               {/* Ribbon */}
-               {plan.ribbon && (
-                 <div className="absolute top-0 right-0 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
-                   {plan.ribbon}
-                 </div>
-               )}
-               <div className="p-6 flex flex-col h-full">
-                 {/* Plan Name */}
-                 <h3 className="text-2xl font-bold mb-2 text-gray-900">
-                   {plan.name}
-                 </h3>
-                 {/* Description */}
-                 <p className="text-gray-600 mb-4">{plan.description}</p>
-                 <div className="mb-6">
-                   {/* Price */}
-                   {plan.monthlyPrice ? (
-                     <div className="text-4xl font-bold text-gray-900">
-                       $
-                       {isYearly
-                         ? calculateYearlyPrice(plan.monthlyPrice)
-                         : plan.monthlyPrice}
-                       <span className="text-xl font-normal text-gray-600">
-                         /{isYearly ? "year" : "month"}
-                       </span>
-                       {plan.perDealPrice && (
-                         <span className="block text-lg font-normal text-gray-600 mt-1">
-                           + ${plan.perDealPrice}/deal
-                         </span>
-                       )}
-                     </div>
-                   ) : (
-                     <div className="text-3xl font-bold text-gray-900">
-                       {plan.price}
-                     </div>
-                   )}
-                   {isYearly && plan.monthlyPrice && (
-                     <p className="text-sm text-green-600 font-semibold mt-2">
-                       Save {calculateSavings(plan.monthlyPrice)}%
-                     </p>
-                   )}
-                 </div>
-                 {/* Features */}
-                 <ul className="space-y-3 mb-6 flex-grow">
-                   {plan.features.map((feature, i) => (
-                     <li key={i} className="flex items-start gap-2 text-sm">
-                       <Check className="h-5 w-5 text-green-500 flex-shrink-0" />
-                       <span className="text-gray-600">{feature}</span>
-                     </li>
-                   ))}
-                 </ul>
-                 {/* Call-to-Action Button */}
-                 <Button
-                   className={`w-full ${
-                     highlightedPlan === plan.name
-                       ? "bg-blue-600 hover:bg-blue-700"
-                       : "bg-blue-500 hover:bg-blue-600"
-                   } text-white font-bold py-2 px-4 rounded transition duration-300`}
-                 >
-                   {plan.cta}
-                 </Button>
-               </div>
-             </Card>
-           ))}
-         </div>
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {plans.map((plan) => (
+            <Card
+              key={plan.name}
+              className={`relative overflow-hidden flex flex-col w-full border rounded-lg ${
+                highlightedPlan === plan.name
+                  ? "border-4 border-blue-500 shadow-lg bg-white scale-105"
+                  : "border border-blue-200 bg-white/80"
+              } transition-all duration-300 hover:shadow-xl backdrop-blur-sm`}
+            >
+              {/* Ribbon */}
+              {plan.ribbon && (
+                <div className="absolute top-0 right-0 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
+                  {plan.ribbon}
+                </div>
+              )}
+              <div className="p-6 flex flex-col h-full">
+                {/* Plan Name */}
+                <h3 className="text-2xl font-bold mb-2 text-gray-900">
+                  {plan.name}
+                </h3>
+                {/* Description */}
+                <p className="text-gray-600 mb-4">{plan.description}</p>
+                <div className="mb-6">
+                  {/* Price */}
+                  {plan.monthlyPrice ? (
+                    <div className="text-4xl font-bold text-gray-900">
+                      $
+                      {isYearly
+                        ? calculateYearlyPrice(plan.monthlyPrice)
+                        : plan.monthlyPrice}
+                      <span className="text-xl font-normal text-gray-600">
+                        /{isYearly ? "year" : "month"}
+                      </span>
+                      {plan.perDealPrice && (
+                        <span className="block text-lg font-normal text-gray-600 mt-1">
+                          + ${plan.perDealPrice}/deal
+                        </span>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="text-3xl font-bold text-gray-900">
+                      {plan.price}
+                    </div>
+                  )}
+                  {isYearly && plan.monthlyPrice && (
+                    <p className="text-sm text-green-600 font-semibold mt-2">
+                      Save {calculateSavings(plan.monthlyPrice)}%
+                    </p>
+                  )}
+                </div>
+                {/* Features */}
+                <ul className="space-y-3 mb-6 flex-grow">
+                  {plan.features.map((feature, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm">
+                      <Check className="h-5 w-5 text-green-500 flex-shrink-0" />
+                      <span className="text-gray-600">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                {/* Call-to-Action Button */}
+                <Button
+                  className={`w-full ${
+                    highlightedPlan === plan.name
+                      ? "bg-blue-600 hover:bg-blue-700"
+                      : "bg-blue-500 hover:bg-blue-600"
+                  } text-white font-bold py-2 px-4 rounded transition duration-300`}
+                >
+                  {plan.cta}
+                </Button>
+              </div>
+            </Card>
+          ))}
+        </div>
 
-                 {/* Feature Comparison Table */}
-                 <div className="mt-16 max-w-4xl mx-auto bg-white/90 shadow-lg rounded-lg overflow-hidden backdrop-blur-sm">
-                   <Table>
-                     <TableHeader>
-                       <TableRow>
-                         <TableHead className="text-left text-gray-900">
-                           Feature
-                         </TableHead>
-                         <TableHead className="text-center text-gray-900">
-                           Self-Service
-                         </TableHead>
-                         <TableHead className="text-center text-gray-900">
-                           Growth
-                         </TableHead>
-                         <TableHead className="text-center text-gray-900">
-                           Enterprise
-                         </TableHead>
-                       </TableRow>
-                     </TableHeader>
-                     <TableBody>
-                       {featureComparison.map((item, index) => (
-                         <TableRow key={index}>
-                           <TableCell className="font-medium text-gray-700">
-                             {item.feature}
-                           </TableCell>
-                           <TableCell className="text-center">
-                             {typeof item.selfService === "boolean" ? (
-                               item.selfService ? (
-                                 <Check className="inline-block text-green-500" />
-                               ) : (
-                                 <X className="inline-block text-red-500" />
-                               )
-                             ) : (
-                               <span className="text-gray-600">{item.selfService}</span>
-                             )}
-                           </TableCell>
-                           <TableCell className="text-center">
-                             {typeof item.growth === "boolean" ? (
-                               item.growth ? (
-                                 <Check className="inline-block text-green-500" />
-                               ) : (
-                                 <X className="inline-block text-red-500" />
-                               )
-                             ) : (
-                               <span className="text-gray-600">{item.growth}</span>
-                             )}
-                           </TableCell>
-                           <TableCell className="text-center">
-                             {typeof item.enterprise === "boolean" ? (
-                               item.enterprise ? (
-                                 <Check className="inline-block text-green-500" />
-                               ) : (
-                                 <X className="inline-block text-red-500" />
-                               )
-                             ) : (
-                               <span className="text-gray-600">{item.enterprise}</span>
-                             )}
-                           </TableCell>
-                         </TableRow>
-                       ))}
-                     </TableBody>
-                   </Table>
-                 </div>
+        {/* Feature Comparison Table */}
+        <div className="mt-16 max-w-4xl mx-auto bg-white/90 shadow-lg rounded-lg overflow-hidden backdrop-blur-sm">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="text-left text-gray-900">
+                  Feature
+                </TableHead>
+                <TableHead className="text-center text-gray-900">
+                  Self-Service
+                </TableHead>
+                <TableHead className="text-center text-gray-900">
+                  Growth
+                </TableHead>
+                <TableHead className="text-center text-gray-900">
+                  Enterprise
+                </TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {featureComparison.map((item, index) => (
+                <TableRow key={index}>
+                  <TableCell className="font-medium text-gray-700">
+                    {item.feature}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {typeof item.selfService === "boolean" ? (
+                      item.selfService ? (
+                        <Check className="inline-block text-green-500" />
+                      ) : (
+                        <X className="inline-block text-red-500" />
+                      )
+                    ) : (
+                      <span className="text-gray-600">{item.selfService}</span>
+                    )}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {typeof item.growth === "boolean" ? (
+                      item.growth ? (
+                        <Check className="inline-block text-green-500" />
+                      ) : (
+                        <X className="inline-block text-red-500" />
+                      )
+                    ) : (
+                      <span className="text-gray-600">{item.growth}</span>
+                    )}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {typeof item.enterprise === "boolean" ? (
+                      item.enterprise ? (
+                        <Check className="inline-block text-green-500" />
+                      ) : (
+                        <X className="inline-block text-red-500" />
+                      )
+                    ) : (
+                      <span className="text-gray-600">{item.enterprise}</span>
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </div>
     </section>
   );

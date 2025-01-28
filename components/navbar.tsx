@@ -18,7 +18,7 @@ import { Menu, X, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { imageUrls } from "@/utils/imageUrls";
-
+import { usePathname, useRouter } from "next/navigation";
 
 const navItemClass = "tracking-wider text-sm uppercase font-medium";
 
@@ -74,7 +74,6 @@ const services = [
     title: "Loan Servicing & Administration",
     items: [
       "Financial Services & Analysis (FSA)",
-      "Loan Administration",
       "Disbursement & PCNA Support",
       "Legacy Data Migration Services",
     ],
@@ -82,8 +81,7 @@ const services = [
   {
     title: "Deal Underwriting & Financial Modeling",
     items: [
-      "Cash Flow Modeling",
-      "Rent Roll Analysis",
+      "Cash Flow Modeling & Rent Roll Analysis",
       "Underwriting & Due Diligence Support",
       "Custom Financial Model Development",
     ],
@@ -134,20 +132,40 @@ ListItem.displayName = "ListItem";
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const scrollToPricing = async (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    // If we're not on the home page, navigate to home first
+    if (pathname !== "/") {
+      router.push("/#pricing");
+      return;
+    }
+
+    // If we're already on home page, just scroll to pricing
+    const pricingSection = document.getElementById("pricing");
+    if (pricingSection) {
+      pricingSection.scrollIntoView({ behavior: "smooth" });
+      setMobileMenuOpen(false);
+    }
+  };
 
   return (
     <>
       <div
         className={`fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-90 backdrop-blur-sm`}
       >
-        <div className="container mx-auto flex h-16 items-center justify-between px-4">
-          <Link href="/" className="flex items-center space-x-2">
+        <div className="container mx-auto flex h-16 items-center justify-center lg:justify-between">
+          {/* Center align for smaller screens */}
+          <Link href="/" className="flex items-center">
             <Image
               src={imageUrls.logo || "/placeholder.svg"}
               alt="Clik.ai Logo"
               width={120}
               height={36}
-              priority
+              className="mr-4 lg:mr-8" // Add spacing if needed
             />
           </Link>
 
@@ -228,6 +246,16 @@ export function Navbar() {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
 
+                <NavigationMenuItem>
+                  <Link href="#pricing" legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={`${navigationMenuTriggerStyle()} ${navItemClass}`}
+                      onClick={scrollToPricing}
+                    >
+                      Pricing
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
                 <NavigationMenuItem>
                   <Link href="/why-clik-ai" legacyBehavior passHref>
                     <NavigationMenuLink
@@ -315,6 +343,13 @@ export function Navbar() {
                   GET STARTED
                 </Link>
               </div>
+              <Link
+                href="#pricing"
+                onClick={scrollToPricing}
+                className={`block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md ${navItemClass}`}
+              >
+                PRICING
+              </Link>
             </div>
           </motion.div>
         )}
