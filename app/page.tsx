@@ -9,7 +9,7 @@ import { PricingSection } from "@/components/sections/05-pricing-section";
 import { ServicesSection } from "@/components/sections/06-services-section";
 import { TestimonialsSection } from "@/components/sections/07-testimonials";
 import { FAQSection } from "@/components/sections/08-faq-section";
-import { useSearchParams } from 'next/navigation';
+//import { useSearchParams } from 'next/navigation';
 
 export default function Home() {
   const [highlightedProduct, setHighlightedProduct] = useState("AutoUW");
