@@ -47,6 +47,7 @@ import {
 interface Post {
   id: number;
   slug: string;
+  params: { slug: string };
   title: {
     rendered: string;
   };

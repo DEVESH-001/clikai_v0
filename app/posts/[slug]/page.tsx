@@ -1,23 +1,35 @@
+// Define the params type correctly
+type Props = {
+  params: {
+    slug: string;
+  };
+  searchParams?: { [key: string]: string | string[] | undefined };
+};
 
+// Function to generate static params
 export async function generateStaticParams() {
   const res = await fetch(`${process.env.WP_API_URL}/posts`);
   const data = await res.json();
 
-  const postSlugs = data.map((post: { slug: string }) => ({ slug: post.slug }));
-
-  return postSlugs;
+  return data.map((post: { slug: string }) => ({
+    slug: post.slug,
+  }));
 }
 
-export default async function PostPage({
-  params,
-}: {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  params: { slug: string };
-}) {
+// Main PostPage component
+export default async function PostPage({ params }: Props) {
+  if (!params?.slug) {
+    throw new Error("Slug is required");
+  }
+
   const res = await fetch(
-    `${process.env.WP_API_URL}/posts?slug=${params.slug}`
+    `${process.env.WP_API_URL}/posts?slug=${encodeURIComponent(params.slug)}`
   );
   const data = await res.json();
+
+  if (!data || data.length === 0) {
+    throw new Error("Post not found");
+  }
 
   return (
     <main className="px-7 pt-24 text-center ">
@@ -29,4 +41,3 @@ export default async function PostPage({
     </main>
   );
 }
-
