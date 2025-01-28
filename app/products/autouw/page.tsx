@@ -20,7 +20,6 @@ import {
   CheckCircle2,
   Clock,
   FileText,
-
 } from "lucide-react";
 
 // Features data
@@ -52,30 +51,6 @@ const features = [
     gradient: "from-purple-500 to-pink-500",
   },
 ];
-
-
-// const workflowSteps = [
-//   {
-//     title: "Upload Documents",
-//     description: "Drag-and-drop Operating Statements and Rent Rolls",
-//     icon: Upload,
-//   },
-//   {
-//     title: "Data Extraction",
-//     description: "Watch AutoUW parse and extract critical data in seconds",
-//     icon: Bot,
-//   },
-//   {
-//     title: "Review & Validate",
-//     description: "Verify extracted data with side-by-side document viewing",
-//     icon: CheckCircle2,
-//   },
-//   {
-//     title: "Download Results",
-//     description: "Export underwriting models in lender-preferred formats",
-//     icon: LineChart,
-//   },
-// ];
 
 // Benefits data
 const benefits = [
@@ -213,10 +188,10 @@ export default function AutoUWPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
               >
                 Automate Your{" "}
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+                <span className=" bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
                   Underwriting Process
                 </span>{" "}
                 with Precision
@@ -253,7 +228,8 @@ export default function AutoUWPage() {
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AUW-7xDRwqT2OvYQV4o16Wvc80A2GNO94L.svg"
                 alt="AutoUW Lease Analysis Interface"
-                fill
+                width={1000}
+                height={1000}
                 className="object-contain"
               />
             </motion.div>
@@ -363,29 +339,12 @@ export default function AutoUWPage() {
                     height={1000}
                   />
                 </div>
-                {/* <div className="relative aspect-[16/9] rounded-lg overflow-hidden">
-                  <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Download%20Result%20RR-tsNeheSlh4FrRjW3hD49XWhh4QW17F.png"
-                    alt="Rent Roll Results"
-                    fill
-                    className="object-cover"
-                  />
-                </div> */}
               </div>
               <p className="mt-4 text-gray-600">
                 Export comprehensive analysis in your preferred format
               </p>
             </Card>
           </div>
-          {/* <div className="relative mx-auto max-w-4xl">
-            <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/autouw2-E8L8z9xtcfIFf8nBCcEAfuz3h9XAb0.png"
-              alt="AutoUW Workflow Interface"
-              width={800}
-              height={400}
-              className="rounded-lg shadow-2xl"
-            />
-          </div> */}
         </div>
       </section>
 
@@ -545,7 +504,7 @@ export default function AutoUWPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 relative bg-gradient-to-b from-white/50 to-blue-50/50">
+      <section className="py-16 relative bg-gradient-to-b from-white/50 to-blue-50/50 ">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -556,7 +515,7 @@ export default function AutoUWPage() {
             </p>
           </div>
           <div className="max-w-3xl mx-auto">
-            <Card className="bg-white/90 backdrop-blur-sm">
+            <Card className="bg-white/90 backdrop-blur-sm rounded-[8px]">
               <Accordion type="single" collapsible className="w-full">
                 {faqItems.map((item, index) => (
                   <AccordionItem key={index} value={`item-${index}`}>
@@ -575,9 +534,9 @@ export default function AutoUWPage() {
       </section>
 
       {/* Demo CTA Section */}
-      <section className="py-16 relative">
+      <section className="py-16 relative ">
         <div className="container mx-auto px-4">
-          <Card className="max-w-4xl mx-auto p-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+          <Card className="max-w-4xl mx-auto p-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-[8px]">
             <div className="text-center">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 Ready to Transform Your Underwriting?
