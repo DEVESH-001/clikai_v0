@@ -9,7 +9,7 @@ import { PricingSection } from "@/components/sections/05-pricing-section";
 import { ServicesSection } from "@/components/sections/06-services-section";
 import { TestimonialsSection } from "@/components/sections/07-testimonials";
 import { FAQSection } from "@/components/sections/08-faq-section";
-import SalesforceCustomizationPage from "./services/consulting/salesforce-customization/page";
+
 //import { useSearchParams } from 'next/navigation';
 
 export default function Home() {
@@ -37,7 +37,7 @@ export default function Home() {
           <HeroSection />
           <LogoCarousel />
         </div>
-        <SalesforceCustomizationPage/>
+
         <QuizSection onProductRecommended={setHighlightedProduct} />
         <ProductCards highlightedProduct={highlightedProduct} />
         <PricingSection />
