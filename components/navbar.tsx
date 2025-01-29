@@ -22,7 +22,6 @@ import { usePathname, useRouter } from "next/navigation";
 
 const navItemClass = "tracking-wider text-sm uppercase font-medium";
 
-// Updated Products structure
 const products = [
   {
     title: "Financial Modeling Suite",
@@ -68,38 +67,89 @@ const products = [
   },
 ];
 
-// Updated Services structure
 const services = [
   {
     title: "Loan Servicing & Administration",
+    description: "Comprehensive loan management and administrative solutions",
     items: [
-      "Financial Services & Analysis (FSA)",
-      "Disbursement & PCNA Support",
-      "Legacy Data Migration Services",
+      {
+        title: "Financial Services & Analysis (FSA)",
+        description: "Expert financial analysis and reporting services",
+        href: "/services/loan-servicing/fsa",
+      },
+      {
+        title: "Disbursement & PCNA Support",
+        description: "Streamlined disbursement and PCNA processing",
+        href: "/services/loan-servicing/disbursement",
+      },
+      {
+        title: "Legacy Data Migration Services",
+        description: "Seamless migration of historical data",
+        href: "/services/loan-servicing/data-migration",
+      },
     ],
   },
   {
     title: "Deal Underwriting & Financial Modeling",
+    description: "Advanced financial modeling and underwriting solutions",
     items: [
-      "Cash Flow Modeling & Rent Roll Analysis",
-      "Underwriting & Due Diligence Support",
-      "Custom Financial Model Development",
+      {
+        title: "Cash Flow Modeling & Rent Roll Analysis",
+        description: "Detailed cash flow projections and rent roll insights",
+        href: "/services/underwriting/cash-flow-modeling",
+      },
+      {
+        title: "Underwriting & Due Diligence Support",
+        description: "Comprehensive due diligence and risk assessment",
+        href: "/services/underwriting/due-diligence",
+      },
+      {
+        title: "Custom Financial Model Development",
+        description: "Tailored financial models for your specific needs",
+        href: "/services/underwriting/custom-models",
+      },
     ],
   },
   {
     title: "Lease & Data Administration",
+    description: "Efficient lease management and data processing",
     items: [
-      "Lease Abstraction & Audit",
-      "Appraisal & OM Data Digitization",
-      "Legacy Data Migration",
+      {
+        title: "Lease Abstraction & Audit",
+        description: "Detailed lease analysis and verification",
+        href: "/services/lease-admin/abstraction",
+      },
+      {
+        title: "Appraisal & OM Data Digitization",
+        description: "Convert physical documents into digital format",
+        href: "/services/lease-admin/digitization",
+      },
+      {
+        title: "Legacy Data Migration",
+        description: "Secure transfer of historical lease data",
+        href: "/services/lease-admin/migration",
+      },
     ],
   },
   {
     title: "Consulting & Technology Solutions",
+    description: "Expert consulting and custom technology implementation",
     items: [
-      "Salesforce Customisation & Integration",
-      "Custom Reporting & Dashboards",
-      "CRE Technology Consulting",
+      {
+        title: "Salesforce Customisation & Integration",
+        description: "Tailored Salesforce solutions for your business",
+        href: "/services/consulting/salesforce-customization",
+      },
+      {
+        title: "Custom Reporting & Dashboards",
+        description: "Bespoke reporting solutions and analytics",
+        href: "/services/consulting/custom-reporting-dashboards",
+      },
+      {
+        title: "CRE Technology Consulting",
+        description: "Strategic technology guidance for CRE",
+        href: "/services/consulting/cre-technology-consulting",
+      },
     ],
   },
 ];
@@ -170,16 +220,16 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex flex-1 justify-center">
-            <NavigationMenu className="hidden lg:flex flex-1 justify-center">
-              <NavigationMenuList className="space-x-1">
+          <div className="hidden lg:flex flex-1 justify-center ">
+            <NavigationMenu className="hidden lg:flex flex-1 justify-center ">
+              <NavigationMenuList className="space-x-1 ">
                 <NavigationMenuItem value="products">
                   <NavigationMenuTrigger className={navItemClass}>
                     PRODUCTS
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="w-[600px] p-4 md:p-6 bg-white">
-                      <div className="grid grid-cols-2 gap-4 bg-white">
+                    <div className="w-[600px] p-4 md:p-6 bg-white ">
+                      <div className="grid grid-cols-2 gap-4 bg-white ">
                         {products.map((category) => (
                           <div key={category.title} className="space-y-2">
                             <h3 className="text-lg font-semibold text-blue-600">
@@ -227,14 +277,25 @@ export function Navbar() {
                             <h3 className="text-lg font-semibold text-blue-600">
                               {category.title}
                             </h3>
-                            <ul className="space-y-1">
+                            <p className="text-sm text-gray-600 mb-2">
+                              {category.description}
+                            </p>
+                            <ul className="space-y-2">
                               {category.items.map((item) => (
-                                <li key={item}>
+                                <li key={item.title}>
                                   <Link
-                                    href="#"
-                                    className="text-sm text-gray-600 hover:text-blue-600 hover:underline"
+                                    href={item.href}
+                                    className="group flex items-center p-2 rounded-md hover:bg-blue-50 transition-colors"
                                   >
-                                    {item}
+                                    <div>
+                                      <div className="text-sm font-medium text-gray-900 group-hover:text-blue-600">
+                                        {item.title}
+                                      </div>
+                                      <p className="text-xs text-gray-500">
+                                        {item.description}
+                                      </p>
+                                    </div>
+                                    <ChevronRight className="ml-auto w-4 h-4 text-gray-400 group-hover:text-blue-500" />
                                   </Link>
                                 </li>
                               ))}
@@ -318,7 +379,7 @@ export function Navbar() {
                 PRODUCTS
               </Link>
               <Link
-                href="#"
+                href="/services"
                 className={`block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md ${navItemClass}`}
               >
                 SERVICES
