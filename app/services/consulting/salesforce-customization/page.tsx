@@ -604,8 +604,7 @@ export default function SalesforceCustomizationPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-center"
-            >
+              className="text-center">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
                 Let&apos;s Transform Your CRE Business Together
               </h2>

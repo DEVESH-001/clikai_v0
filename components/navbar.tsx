@@ -11,7 +11,6 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronRight } from "lucide-react";
@@ -20,7 +19,8 @@ import { cn } from "@/lib/utils";
 import { imageUrls } from "@/utils/imageUrls";
 import { usePathname, useRouter } from "next/navigation";
 
-const navItemClass = "tracking-wider text-sm uppercase font-medium";
+const navItemClass =
+  "tracking-wider text-sm uppercase font-medium text-gray-600 hover:text-gray-900";
 
 const products = [
   {
@@ -182,6 +182,8 @@ ListItem.displayName = "ListItem";
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -205,7 +207,7 @@ export function Navbar() {
   return (
     <>
       <div
-        className={`fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-90 backdrop-blur-sm`}
+        className={`fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-sm`}
       >
         <div className="container mx-auto flex h-16 items-center justify-center lg:justify-between">
           {/* Center align for smaller screens */}
@@ -221,10 +223,12 @@ export function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex flex-1 justify-center ">
-            <NavigationMenu className="hidden lg:flex flex-1 justify-center ">
-              <NavigationMenuList className="space-x-1 ">
+            <NavigationMenu className="hidden lg:flex flex-1 justify-center">
+              <NavigationMenuList className="space-x-6">
                 <NavigationMenuItem value="products">
-                  <NavigationMenuTrigger className={navItemClass}>
+                  <NavigationMenuTrigger
+                    className={`${navItemClass} bg-transparent hover:bg-transparent`}
+                  >
                     PRODUCTS
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
@@ -266,7 +270,9 @@ export function Navbar() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem value="services">
-                  <NavigationMenuTrigger className={navItemClass}>
+                  <NavigationMenuTrigger
+                    className={`${navItemClass} bg-transparent hover:bg-transparent`}
+                  >
                     SERVICES
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
@@ -310,17 +316,18 @@ export function Navbar() {
                 <NavigationMenuItem>
                   <Link href="#pricing" legacyBehavior passHref>
                     <NavigationMenuLink
-                      className={`${navigationMenuTriggerStyle()} ${navItemClass}`}
+                      className={`${navItemClass} bg-transparent hover:bg-transparent`}
                       onClick={scrollToPricing}
                     >
-                      Pricing
+                      PRICING
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
+
                 <NavigationMenuItem>
                   <Link href="/why-clik-ai" legacyBehavior passHref>
                     <NavigationMenuLink
-                      className={`${navigationMenuTriggerStyle()} ${navItemClass}`}
+                      className={`${navItemClass} bg-transparent hover:bg-transparent`}
                     >
                       WHY CLIK.AI
                     </NavigationMenuLink>
@@ -347,13 +354,13 @@ export function Navbar() {
           <div className="hidden lg:flex items-center space-x-4">
             <Link
               href="/login"
-              className={`${navigationMenuTriggerStyle()} ${navItemClass}`}
+              className={`${navItemClass} hover:text-gray-900`}
             >
               SIGN IN
             </Link>
             <Link href="/get-started">
               <Button
-                className={`bg-blue-600 text-white hover:bg-blue-700 ${navItemClass} rounded-[8px]`}
+                className={`bg-blue-600 hover:bg-blue-700 rounded-[8px] uppercase font-medium tracking-wider text-sm text-white`}
               >
                 GET STARTED
               </Button>
@@ -369,48 +376,130 @@ export function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="lg:hidden fixed top-16 left-0 right-0 bg-white z-50"
+            className="lg:hidden fixed top-16 left-0 right-0 bg-white z-50 max-h-[calc(100vh-4rem)] overflow-y-auto"
           >
             <div className="px-4 pt-2 pb-3 space-y-1">
-              <Link
-                href="#"
-                className={`block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md ${navItemClass}`}
-              >
-                PRODUCTS
-              </Link>
-              <Link
-                href="/services"
-                className={`block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md ${navItemClass}`}
-              >
-                SERVICES
-              </Link>
+              {/* Products Dropdown */}
+              <div>
+                <button
+                  onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+                  className={`flex justify-between items-center w-full px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md ${navItemClass}`}
+                >
+                  PRODUCTS
+                  <ChevronRight
+                    className={`w-4 h-4 transform transition-transform ${
+                      mobileProductsOpen ? "rotate-90" : ""
+                    }`}
+                  />
+                </button>
+                <AnimatePresence>
+                  {mobileProductsOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="pl-4"
+                    >
+                      {products.map((category) => (
+                        <div key={category.title} className="py-2">
+                          <h3 className="text-sm font-semibold text-blue-600 px-3 py-1">
+                            {category.title}
+                          </h3>
+                          {category.items.map((item) => (
+                            <Link
+                              key={item.title}
+                              href={item.href}
+                              className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-md"
+                              onClick={() => setMobileMenuOpen(false)}
+                            >
+                              {item.title}
+                            </Link>
+                          ))}
+                        </div>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Services Dropdown */}
+              <div>
+                <button
+                  onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                  className={`flex justify-between items-center w-full px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md ${navItemClass}`}
+                >
+                  SERVICES
+                  <ChevronRight
+                    className={`w-4 h-4 transform transition-transform ${
+                      mobileServicesOpen ? "rotate-90" : ""
+                    }`}
+                  />
+                </button>
+                <AnimatePresence>
+                  {mobileServicesOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="pl-4"
+                    >
+                      {services.map((category) => (
+                        <div key={category.title} className="py-2">
+                          <h3 className="text-sm font-semibold text-blue-600 px-3 py-1">
+                            {category.title}
+                          </h3>
+                          {category.items.map((item) => (
+                            <Link
+                              key={item.title}
+                              href={item.href}
+                              className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-md"
+                              onClick={() => setMobileMenuOpen(false)}
+                            >
+                              {item.title}
+                            </Link>
+                          ))}
+                        </div>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
               <Link
                 href="/why-clik-ai"
                 className={`block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md ${navItemClass}`}
+                onClick={() => setMobileMenuOpen(false)}
               >
                 WHY CLIK.AI
               </Link>
+
+              <Link
+                href="#pricing"
+                onClick={(e) => {
+                  scrollToPricing(e);
+                  setMobileMenuOpen(false);
+                }}
+                className={`block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md ${navItemClass}`}
+              >
+                PRICING
+              </Link>
+
               <div className="border-t border-gray-200 pt-4 pb-3">
                 <Link
                   href="/login"
                   className={`block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md ${navItemClass}`}
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   SIGN IN
                 </Link>
                 <Link
                   href="/get-started"
-                  className={`block px-3 py-2 text-sm text-white bg-blue-600 hover:bg-blue-700 rounded-md mt-2 ${navItemClass}`}
+                  className={`block px-3 py-2 text-sm text-white bg-blue-600 hover:bg-blue-700 rounded-md mt-2 text-center ${navItemClass}`}
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   GET STARTED
                 </Link>
               </div>
-              <Link
-                href="#pricing"
-                onClick={scrollToPricing}
-                className={`block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md ${navItemClass}`}
-              >
-                PRICING
-              </Link>
             </div>
           </motion.div>
         )}

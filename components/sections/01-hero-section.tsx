@@ -10,9 +10,7 @@ export function HeroSection() {
     <section className="relative min-h-[80vh] p-10 overflow-hidden pt-24 pb-0 mt-16 bg-gradient-to-b from-white via-blue-50 to-indigo-100">
       <div className="absolute inset-0 bg-[url('/noise.png')] opacity-5 mix-blend-soft-light"></div>
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-100/10 to-indigo-200/20"></div>
-      <div className="relative z-10 lg:space-y-6 px-6">
-        {" "}
-        {/* Removed container and added px-0 */}
+      <div className="relative z-10 lg:space-y-6 container mx-auto">
         <div className="flex flex-col lg:flex-row items-center justify-between h-full w-full">
           <div className="lg:w-3/5 mb-8 lg:mb-0 w-full">
             <motion.h1

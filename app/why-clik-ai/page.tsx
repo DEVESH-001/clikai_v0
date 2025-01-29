@@ -17,6 +17,7 @@ import {
   Clock,
   Sparkles,
   Bot,
+
 } from "lucide-react";
 // import { GeistSans } from "geist/font/sans";
 
@@ -86,7 +87,7 @@ const advantages = [
 const journey = [
   {
     year: "2014",
-    title: "Integrand Analytics Founded",
+    title: "Due Diligence ",
     description:
       "Started as a specialized KPO providing financial spreading analysis and loan origination support for the US CRE industry",
     icon: BuildingIcon,
@@ -174,7 +175,7 @@ export default function WhyPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-xl text-gray-700 mb-8"
             >
-              Join industry leaders achieving 50-75% efficiency gains with our
+              Join industry leaders achieving efficiency gains with our
               AI-powered CRE solutions
             </motion.p>
             <motion.div
@@ -239,10 +240,11 @@ export default function WhyPage() {
               </div>
               <div className="flex flex-col justify-center">
                 <blockquote className="text-lg text-gray-700 italic mb-4">
-                  &quot;The time savings we now have as a result of using Clik.ai
-                  allows BWE operations to scale with our growing Servicing
-                  portfolio, process more deals with the same level of high
-                  personal touch, and focus more time on our customers&quot;
+                  &quot;The time savings we now have as a result of using
+                  Clik.ai allows BWE operations to scale with our growing
+                  Servicing portfolio, process more deals with the same level of
+                  high personal touch, and focus more time on our
+                  customers&quot;
                 </blockquote>
                 <div className="flex items-center gap-4">
                   <div>
@@ -387,15 +389,44 @@ export default function WhyPage() {
                 );
               })}
             </div>
-
-            <div className="text-center max-w-3xl mx-auto bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white shadow-xl">
-              <h3 className="text-3xl font-bold mb-4">
-                Discover how Clik.ai simplifies your toughest challenges
-              </h3>
-              <p className="text-lg mb-8 text-blue-100">
-                Let&apos;s talk about how our solutions can empower your business to
-                succeed.
-              </p>
+          
+          </div>
+        </div>
+      </section>
+      {/* CTA Section */}
+      <section className="py-16 relative overflow-hidden bg-gradient-to-br from-[#001F3F] via-blue-900 to-blue-800">
+        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-5 mix-blend-soft-light"></div>
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <svg
+            className="absolute w-full h-full"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M0,0 C30,40 70,60 100,0 L100,100 L0,100 Z"
+              fill="rgba(255, 255, 255, 0.05)"
+            />
+          </svg>
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Discover how Clik.ai simplifies your toughest challenges
+            </h2>
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-12">
+              Let&apos;s talk about how our solutions can empower your business
+              to succeed.
+            </p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               <Button
                 size="lg"
                 variant="secondary"
@@ -404,23 +435,11 @@ export default function WhyPage() {
                 Get Demo
                 <ArrowUpRightIcon className="ml-2 h-4 w-4" />
               </Button>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
-      <div className="relative h-24 overflow-hidden">
-        <svg
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-          className="absolute bottom-0 w-full h-full transform rotate-180"
-        >
-          <path
-            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-            className="fill-white/50"
-          ></path>
-        </svg>
-      </div>
     </div>
   );
 }
