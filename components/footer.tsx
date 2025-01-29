@@ -223,7 +223,7 @@ export function Footer({ onOpenCookiePreferences }: FooterProps) {
               href="/about-us"
               className="text-gray-300 hover:text-blue-300"
             >
-              About Us
+              Contact Us
             </Link>
             <button
               onClick={onOpenCookiePreferences}

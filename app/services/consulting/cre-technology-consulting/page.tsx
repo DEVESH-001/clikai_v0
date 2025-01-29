@@ -1,5 +1,6 @@
-'use client'
-import { AwaitedReactNode, JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useState } from "react";
+"use client";
+
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -22,10 +23,8 @@ import {
   Building2,
   Settings,
 } from "lucide-react";
-
-
 import { Suspense } from "react";
-
+import { GradientBackground } from "@/components/gradient-background";
 
 const benefits = [
   {
@@ -113,7 +112,13 @@ interface SetupStepProps {
   isLeft: boolean;
 }
 
-const SetupStep = ({ icon: Icon, title, details, isLast, isLeft }: SetupStepProps) => {
+const SetupStep = ({
+  icon: Icon,
+  title,
+  details,
+  isLast,
+  isLeft,
+}: SetupStepProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -185,7 +190,7 @@ const SetupStep = ({ icon: Icon, title, details, isLast, isLeft }: SetupStepProp
 interface ResultCardProps {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   title: string;
-  details: (string | number | bigint | boolean | ReactElement | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined)[];
+  details: string[];
 }
 
 const ResultCard = ({ icon: Icon, title, details }: ResultCardProps) => {
@@ -196,7 +201,7 @@ const ResultCard = ({ icon: Icon, title, details }: ResultCardProps) => {
         <h3 className="text-xl font-semibold text-gray-900">{title}</h3>
       </div>
       <ul className="space-y-2">
-        {details.map((detail: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<unknown>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined, index: Key | null | undefined) => (
+        {details.map((detail, index) => (
           <li key={index} className="flex items-start">
             <CheckSquare className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
             <span className="text-gray-600">{detail}</span>
@@ -212,59 +217,8 @@ export default function CRETechnologyConsultingPage() {
     <div
       className={`min-h-screen w-full ${GeistSans.className} relative overflow-hidden`}
     >
-      {/* Curvy background elements */}
-      <div className="fixed inset-0 z-0 overflow-hidden">
-        <svg
-          className="w-full h-full"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 320"
-        >
-          <motion.path
-            fill="rgba(59, 130, 246, 0.05)"
-            fillOpacity="1"
-            d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-            animate={{
-              d: [
-                "M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                "M0,160L48,181.3C96,203,192,245,288,261.3C384,277,480,267,576,234.7C672,203,768,149,864,138.7C960,128,1056,160,1152,186.7C1248,213,1344,235,1392,245.3L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-              ],
-            }}
-            transition={{
-              repeat: Number.POSITIVE_INFINITY,
-              repeatType: "reverse",
-              duration: 20,
-              ease: "easeInOut",
-            }}
-          />
-        </svg>
-      </div>
-
       {/* Hero Section */}
-      <section className="relative pt-24 pb-12 overflow-hidden bg-white">
-        <div className="absolute inset-0 z-0">
-          <svg
-            className="w-full h-full"
-            viewBox="0 0 1440 320"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <motion.path
-              fill="rgba(99, 102, 241, 0.1)"
-              d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,224C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-              animate={{
-                d: [
-                  "M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,224C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                  "M0,160L48,181.3C96,203,192,245,288,261.3C384,277,480,267,576,234.7C672,203,768,149,864,138.7C960,128,1056,160,1152,186.7C1248,213,1344,235,1392,245.3L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                ],
-              }}
-              transition={{
-                repeat: Number.POSITIVE_INFINITY,
-                repeatType: "reverse",
-                duration: 20,
-                ease: "easeInOut",
-              }}
-            />
-          </svg>
-        </div>
+      <GradientBackground className="pt-24 pb-12 overflow-hidden">
         <div className="container mx-auto px-4 max-w-full relative z-10">
           <div className="flex flex-col items-center mt-16">
             <motion.div
@@ -312,34 +266,10 @@ export default function CRETechnologyConsultingPage() {
             </motion.div>
           </div>
         </div>
-      </section>
+      </GradientBackground>
 
       {/* Benefits Section */}
       <section className="py-12 relative overflow-hidden bg-gradient-to-br from-indigo-50 via-purple-50 to-blue-50">
-        <div className="absolute inset-0 z-0">
-          <svg
-            className="w-full h-full"
-            viewBox="0 0 1440 320"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <motion.path
-              fill="rgba(129, 140, 248, 0.1)"
-              d="M0,96L48,128C96,160,192,224,288,213.3C384,203,480,117,576,96C672,75,768,117,864,154.7C960,192,1056,224,1152,218.7C1248,213,1344,171,1392,149.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-              animate={{
-                d: [
-                  "M0,96L48,128C96,160,192,224,288,213.3C384,203,480,117,576,96C672,75,768,117,864,154.7C960,192,1056,224,1152,218.7C1248,213,1344,171,1392,149.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                  "M0,160L48,170.7C96,181,192,203,288,192C384,181,480,139,576,144C672,149,768,203,864,208C960,213,1056,171,1152,149.3C1248,128,1344,128,1392,128L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                ],
-              }}
-              transition={{
-                repeat: Number.POSITIVE_INFINITY,
-                repeatType: "reverse",
-                duration: 20,
-                ease: "easeInOut",
-              }}
-            />
-          </svg>
-        </div>
         <div className="container mx-auto px-4 max-w-5xl relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -389,30 +319,6 @@ export default function CRETechnologyConsultingPage() {
 
       {/* Offshore Captive Center Setup Model Section */}
       <section className="py-16 relative overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-        <div className="absolute inset-0 z-0">
-          <svg
-            className="w-full h-full"
-            viewBox="0 0 1440 320"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <motion.path
-              fill="rgba(99, 102, 241, 0.1)"
-              d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,224C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-              animate={{
-                d: [
-                  "M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,224C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                  "M0,160L48,181.3C96,203,192,245,288,261.3C384,277,480,267,576,234.7C672,203,768,149,864,138.7C960,128,1056,160,1152,186.7C1248,213,1344,235,1392,245.3L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                ],
-              }}
-              transition={{
-                repeat: Number.POSITIVE_INFINITY,
-                repeatType: "reverse",
-                duration: 20,
-                ease: "easeInOut",
-              }}
-            />
-          </svg>
-        </div>
         <div className="container mx-auto px-4 max-w-5xl relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -540,6 +446,8 @@ export default function CRETechnologyConsultingPage() {
           </div>
         </div>
       </section>
+
+      {/* Call to Action Section */}
       <section className="py-16 relative overflow-hidden bg-gradient-to-br from-[#001F3F] via-blue-900 to-blue-800">
         <div className="container mx-auto px-4 relative z-10">
           <motion.div

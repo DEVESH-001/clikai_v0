@@ -25,6 +25,9 @@ import {
 } from "lucide-react";
 import { GeistSans } from "geist/font/sans";
 
+import React from "react";
+import { GradientBackground } from "@/components/gradient-background";
+
 
 const services = [
   {
@@ -165,7 +168,15 @@ interface CardItem {
   pattern?: string;
 }
 
-const Card = ({ item, isService = false, isEngagementModel = false }: { item: CardItem; isService?: boolean; isEngagementModel?: boolean }) => {
+const Card = ({
+  item,
+  isService = false,
+  isEngagementModel = false,
+}: {
+  item: CardItem;
+  isService?: boolean;
+  isEngagementModel?: boolean;
+}) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -246,14 +257,16 @@ const TechnologyCard = ({ item }: { item: TechnologyItem }) => {
 export default function SalesforceCustomizationPage() {
   const [activeService, setActiveService] = useState<number | null>(null);
   const [activeBenefit, setActiveBenefit] = useState(null);
-  const [activeEngagementModel, setActiveEngagementModel] = useState<number | null>(null);
+  const [activeEngagementModel, setActiveEngagementModel] = useState<
+    number | null
+  >(null);
 
   const handleServiceClick = useCallback(
-      (index: number) => {
-        setActiveService(activeService === index ? null : index);
-      },
-      [activeService]
-    );
+    (index: number) => {
+      setActiveService(activeService === index ? null : index);
+    },
+    [activeService]
+  );
 
   const handleBenefitClick = useCallback(
     (index: SetStateAction<null>) => {
@@ -273,53 +286,56 @@ export default function SalesforceCustomizationPage() {
     <div className={GeistSans.className}>
       <div className="min-h-screen">
         {/* Hero Section */}
+
         <section className="relative pt-32 pb-16 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-white via-blue-50/30 to-indigo-50/40" />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-purple-50/50" />
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-                  Elevate Your CRE Operations with{" "}
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-                    Salesforce Expertise
-                  </span>
-                </h1>
-                <p className="text-xl md:text-2xl text-gray-600 mb-6 leading-relaxed">
-                  From deal management to portfolio performance, we provide the
-                  resources to optimize workflows, enhance stakeholder
-                  interactions, and drive growth.
-                </p>
-                <div className="flex gap-4">
-                  <Button
-                    size="lg"
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-8 rounded-[8px]"
-                  >
-                    Talk to Us Now
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </div>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="relative h-[500px]"
-              >
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/salesforce-customization-rJUSlxmehxUtmrxkWOicaDg8iXL6GC.svg"
-                  alt="Salesforce Customization"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </motion.div>
+          <GradientBackground>
+            <div className="absolute inset-0 bg-gradient-to-b from-white via-blue-50/30 to-indigo-50/40" />
+            <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-purple-50/50" />
+            <div className="container mx-auto px-4 relative z-10">
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                >
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+                    Elevate Your CRE Operations with{" "}
+                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+                      Salesforce Expertise
+                    </span>
+                  </h1>
+                  <p className="text-xl md:text-2xl text-gray-600 mb-6 leading-relaxed">
+                    From deal management to portfolio performance, we provide
+                    the resources to optimize workflows, enhance stakeholder
+                    interactions, and drive growth.
+                  </p>
+                  <div className="flex gap-4">
+                    <Button
+                      size="lg"
+                      className="bg-blue-600 hover:bg-blue-700 text-white px-8 rounded-[8px]"
+                    >
+                      Talk to Us Now
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </div>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="relative h-[500px]"
+                >
+                  <Image
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/salesforce-customization-rJUSlxmehxUtmrxkWOicaDg8iXL6GC.svg"
+                    alt="Salesforce Customization"
+                    fill
+                    className="object-contain"
+                    priority
+                  />
+                </motion.div>
+              </div>
             </div>
-          </div>
+          </GradientBackground>
         </section>
 
         {/* Approach Section */}
@@ -340,6 +356,7 @@ export default function SalesforceCustomizationPage() {
               />
             </svg>
           </div>
+
           <div className="container mx-auto px-4">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -601,7 +618,6 @@ export default function SalesforceCustomizationPage() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
                 <Button

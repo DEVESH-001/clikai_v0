@@ -28,6 +28,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { GradientBackground } from "@/components/gradient-background";
+
 
 ChartJS.register(
   CategoryScale,
@@ -1344,76 +1346,80 @@ export default function CustomReportingDashboardsPage() {
 
         {/* Hero Section */}
         <section className="relative z-10 pt-24 pb-12">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 mt-8"
-              >
-                Empower Your Decisions with{" "}
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-                  Custom Reporting & Dashboards
-                </span>
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-xl text-gray-600 mb-8 max-w-4xl mx-auto"
-              >
-                Transform raw data into actionable insights with interactive
-                dashboards tailored to your CRE needs.
-                <br />
-                Visualize key metrics, track performance, and drive smarter
-                decision-making.
-              </motion.p>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                <Button
-                  size="lg"
-                  className="bg-blue-600 text-white hover:bg-blue-700 rounded-[8px]"
+          <GradientBackground className=" overflow-hidden">
+            <div className="container mx-auto px-4">
+              <div className="text-center mb-12">
+                <motion.h1
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 mt-8"
                 >
-                  Talk to Us Now
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </motion.div>
-            </div>
+                  Empower Your Decisions with{" "}
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+                    Custom Reporting & Dashboards
+                  </span>
+                </motion.h1>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="text-xl text-gray-600 mb-8 max-w-4xl mx-auto"
+                >
+                  Transform raw data into actionable insights with interactive
+                  dashboards tailored to your CRE needs.
+                  <br />
+                  Visualize key metrics, track performance, and drive smarter
+                  decision-making.
+                </motion.p>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                >
+                  <Button
+                    size="lg"
+                    className="bg-blue-600 text-white hover:bg-blue-700 rounded-[8px]"
+                  >
+                    Talk to Us Now
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </motion.div>
+              </div>
 
-            <Card className="p-6 bg-white/90 backdrop-blur-sm">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div>
-                  <Tabs defaultValue="rent-roll" className="w-full">
-                    <TabsList className="grid w-full grid-cols-2">
-                      <TabsTrigger value="rent-roll">
-                        Rent Roll Extraction
-                      </TabsTrigger>
-                      <TabsTrigger value="operating-statement">
-                        Operating Statement
-                      </TabsTrigger>
-                    </TabsList>
-                    <TabsContent value="rent-roll">
-                      <RentRollTable />
-                    </TabsContent>
-                    <TabsContent value="operating-statement">
-                      <OperatingStatementTable />
-                    </TabsContent>
-                  </Tabs>
-                  <div className="mt-6">
-                    <h3 className="text-lg font-semibold mb-2">Sales Comps</h3>
-                    <SalesCompsTable />
+              <Card className="p-6 bg-white/90 backdrop-blur-sm">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <div>
+                    <Tabs defaultValue="rent-roll" className="w-full">
+                      <TabsList className="grid w-full grid-cols-2">
+                        <TabsTrigger value="operating-statement">
+                          Operating Statement
+                        </TabsTrigger>
+                        <TabsTrigger value="rent-roll">
+                          Rent Roll Extraction
+                        </TabsTrigger>
+                      </TabsList>
+                      <TabsContent value="rent-roll">
+                        <RentRollTable />
+                      </TabsContent>
+                      <TabsContent value="operating-statement">
+                        <OperatingStatementTable />
+                      </TabsContent>
+                    </Tabs>
+                    <div className="mt-6">
+                      <h3 className="text-lg font-semibold mb-2">
+                        Sales Comps
+                      </h3>
+                      <SalesCompsTable />
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <DashboardCharts />
                   </div>
                 </div>
-                <div className="space-y-6">
-                  <DashboardCharts />
-                </div>
-              </div>
-            </Card>
-          </div>
+              </Card>
+            </div>
+          </GradientBackground>
         </section>
 
         {/* Reporting Solutions Section */}

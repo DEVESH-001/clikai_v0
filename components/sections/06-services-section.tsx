@@ -36,17 +36,7 @@ const services = [
           "Automated compliance with regulatory requirements",
         ],
       },
-      {
-        title: "Loan Administration",
-        tagline: "Streamlined loan management",
-        description:
-          "Efficiently manage loans with AI-powered processing and client-friendly dashboards.",
-        benefits: [
-          "Automated payment processing and loan onboarding",
-          "AI-driven interest rate adjustments and ARM processing",
-          "Real-time loan status tracking and payment histories",
-        ],
-      },
+
       {
         title: "Disbursement & PCNA Support",
         tagline: "Faster, compliant assessments",
@@ -79,23 +69,13 @@ const services = [
     color: "#10B981",
     subservices: [
       {
-        title: "Cash Flow Modeling",
+        title: "Cash Flow Modeling & Rent Roll Analysis",
         tagline: "Intelligent projections and analysis",
         description:
           "Create AI-powered cash flow models with advanced scenario analysis capabilities.",
         benefits: [
           "AI-generated property income and expense projections",
           "Machine learning-based scenario analysis for market conditions",
-        ],
-      },
-      {
-        title: "Rent Roll Analysis",
-        tagline: "Deep tenant insights",
-        description:
-          "Gain quick insights into occupancy and revenue with AI-driven tenant data parsing.",
-        benefits: [
-          "Automated tenant-level data extraction and analysis",
-          "AI-powered tenant risk assessment and rent structure comparison",
         ],
       },
       {

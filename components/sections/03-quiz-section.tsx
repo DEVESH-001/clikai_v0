@@ -140,7 +140,11 @@ export function QuizSection({ onProductRecommended }: QuizSectionProps) {
 
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Curved lines */}
-        <svg className="absolute w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <svg
+          className="absolute w-full h-full"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+        >
           <motion.path
             d="M0,50 C30,20 70,80 100,50"
             stroke="rgba(59, 130, 246, 0.2)"
@@ -148,7 +152,11 @@ export function QuizSection({ onProductRecommended }: QuizSectionProps) {
             fill="none"
             initial={{ pathLength: 0 }}
             animate={{ pathLength: 1 }}
-            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" }}
+            transition={{
+              duration: 2,
+              repeat: Number.POSITIVE_INFINITY,
+              repeatType: "reverse",
+            }}
           />
           <motion.path
             d="M0,30 C30,60 70,40 100,70"
@@ -157,7 +165,11 @@ export function QuizSection({ onProductRecommended }: QuizSectionProps) {
             fill="none"
             initial={{ pathLength: 0 }}
             animate={{ pathLength: 1 }}
-            transition={{ duration: 2.5, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" }}
+            transition={{
+              duration: 2.5,
+              repeat: Number.POSITIVE_INFINITY,
+              repeatType: "reverse",
+            }}
           />
         </svg>
 
@@ -183,17 +195,18 @@ export function QuizSection({ onProductRecommended }: QuizSectionProps) {
         ))}
       </div>
 
-      <div className={`container mx-auto px-4 py-8 max-w-4xl relative z-10`}>
+      <div className={`container mx-auto px-4 py-8 max-w-6xl relative z-10`}>
         <div className={`text-center mb-8`}>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
             Find Your Perfect Clik.ai Solution
           </h2>
           <p className="text-base md:text-lg text-gray-700 max-w-2xl mx-auto">
-            Answer a few questions to get personalized product recommendations tailored to your needs
+            Answer a few questions to get personalized product recommendations
+            tailored to your needs
           </p>
         </div>
 
-        <Card className="p-4 md:p-6 lg:p-8 bg-white/90 backdrop-blur shadow-xl rounded-xl">
+        <Card className="p-6 md:p-8 lg:p-10 bg-white/90 backdrop-blur shadow-xl rounded-xl">
           <AnimatePresence mode="wait">
             {!showResult ? (
               <motion.div
@@ -204,7 +217,9 @@ export function QuizSection({ onProductRecommended }: QuizSectionProps) {
                 transition={{ duration: 0.3 }}
               >
                 <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-xl font-semibold text-blue-900">{currentQuestionData.question}</h3>
+                  <h3 className="text-xl font-semibold text-blue-900">
+                    {currentQuestionData.question}
+                  </h3>
                   <span className="text-sm text-gray-500">
                     {currentQuestion + 1} of {questions.length}
                   </span>
@@ -216,7 +231,9 @@ export function QuizSection({ onProductRecommended }: QuizSectionProps) {
                       key={index}
                       variant="outline"
                       className={`p-4 md:p-6 h-auto text-left flex items-start justify-between group hover:border-blue-500 hover:bg-blue-50 transition-all ${
-                        answers[currentQuestion + 1] === option ? "border-blue-500 bg-blue-50" : ""
+                        answers[currentQuestion + 1] === option
+                          ? "border-blue-500 bg-blue-50"
+                          : ""
                       }`}
                       onClick={() => handleAnswer(option)}
                     >
@@ -251,8 +268,12 @@ export function QuizSection({ onProductRecommended }: QuizSectionProps) {
               >
                 <div className="mb-6">
                   <CheckCircle2 className="w-12 h-12 md:w-16 md:h-16 text-green-500 mx-auto mb-4" />
-                  <h3 className="text-xl md:text-2xl font-bold text-blue-900 mb-2">We&apos;ve Found Your Perfect Match!</h3>
-                  <p className="text-base md:text-lg text-gray-600">Based on your needs, we recommend:</p>
+                  <h3 className="text-xl md:text-2xl font-bold text-blue-900 mb-2">
+                    We&apos;ve Found Your Perfect Match!
+                  </h3>
+                  <p className="text-base md:text-lg text-gray-600">
+                    Based on your needs, we recommend:
+                  </p>
                 </div>
 
                 <div className="text-2xl md:text-3xl font-bold text-blue-600 mb-8">
@@ -260,10 +281,16 @@ export function QuizSection({ onProductRecommended }: QuizSectionProps) {
                 </div>
 
                 <div className="flex justify-center gap-4">
-                  <Button variant="outline" onClick={resetQuiz} className="text-sm md:text-base">
+                  <Button
+                    variant="outline"
+                    onClick={resetQuiz}
+                    className="text-sm md:text-base"
+                  >
                     Start Over
                   </Button>
-                  <Button className="text-sm md:text-base bg-black text-white hover:text-white hover:bg-black">Learn More</Button>
+                  <Button className="text-sm md:text-base bg-black text-white hover:text-white hover:bg-black">
+                    Learn More
+                  </Button>
                 </div>
               </motion.div>
             )}
@@ -271,6 +298,6 @@ export function QuizSection({ onProductRecommended }: QuizSectionProps) {
         </Card>
       </div>
     </section>
-  )
+  );
 }
 

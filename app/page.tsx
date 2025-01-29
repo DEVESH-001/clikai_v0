@@ -16,9 +16,9 @@ export default function Home() {
   const [highlightedProduct, setHighlightedProduct] = useState("AutoUW");
 
   useEffect(() => {
-    // Check if there's a hash in the URL
+
     if (window.location.hash === '#pricing') {
-      // Small delay to ensure the content is loaded
+
       setTimeout(() => {
         const pricingSection = document.getElementById('pricing');
         if (pricingSection) {
