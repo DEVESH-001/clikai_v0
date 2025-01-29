@@ -326,9 +326,14 @@ const Slider = ({
         className="relative w-full h-2 bg-gray-200 rounded-full cursor-pointer"
         onClick={handleSliderChange}
       >
-        <div
-          className="absolute top-0 left-0 w-1/2 h-full bg-blue-500 rounded-full transition-all duration-300 ease-in-out"
-          style={{ transform: `translateX(${currentIndex * 100}%)` }}
+        <motion.div
+          className="absolute top-0 left-0 w-1/2 h-full bg-blue-500 rounded-full"
+          animate={{ x: `${currentIndex * 100}%` }}
+          transition={{
+            type: "tween",
+            duration: .15,
+            ease: "easeOut",
+          }}
         />
       </div>
     </div>
@@ -398,7 +403,11 @@ export function ServicesSection() {
           <motion.div
             className="flex transition-all duration-500 ease-in-out"
             animate={{ x: `${currentIndex * -100}%` }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            transition={{
+              type: "tween",
+              duration: 0.15,
+              ease: "easeOut",
+            }}
           >
             <div className="flex-shrink-0 w-full grid md:grid-cols-2 gap-6 md:gap-8">
               {services.slice(0, 2).map((service) => (
@@ -434,7 +443,7 @@ export function ServicesSection() {
 
         <Slider currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} />
 
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
@@ -446,7 +455,7 @@ export function ServicesSection() {
           >
             Explore All AI Solutions
           </Button>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );
