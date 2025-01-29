@@ -426,7 +426,7 @@ export default function CRETechnologyConsultingPage() {
           </motion.div>
           <div className="relative max-w-4xl mx-auto">
             {setupSteps.map((step, index) => (
-              <wSetupStep
+              <SetupStep
                 key={index}
                 {...step}
                 isLast={index === setupSteps.length - 1}
