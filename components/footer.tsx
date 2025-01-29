@@ -4,8 +4,15 @@ import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
+
+interface FooterProps {
+  onOpenCookiePreferences: () => void;
+}
+
 // Main Footer component
-export function Footer() {
+export function Footer({ onOpenCookiePreferences }: FooterProps) {
+
+
   return (
     <footer className="bg-[#001F3F] pt-8 sm:pt-12 md:pt-16 pb-6 sm:pb-8 text-white">
       <div className="container mx-auto px-4">
@@ -203,7 +210,6 @@ export function Footer() {
         </div>
 
         <hr className="border-gray-300 mb-6 sm:mb-8" />
-
         {/* Copyright and legal links */}
         <div className="flex flex-col sm:flex-row justify-between items-center text-xs sm:text-sm text-gray-300">
           <div className="flex flex-wrap justify-center sm:justify-start space-x-2 sm:space-x-4 mb-2 sm:mb-0">
@@ -214,21 +220,19 @@ export function Footer() {
               Terms & Conditions
             </Link>
             <Link
-              href="/contact-us"
+              href="/about-us"
               className="text-gray-300 hover:text-blue-300"
             >
-              Contact Us
+              About Us
             </Link>
-            <Link
-              href="https://www.linkedin.com/company/cliktechnologies/jobs/"
-              target="_blank"
-              className="text-gray-300 hover:text-blue-300"
+            <button
+              onClick={onOpenCookiePreferences}
+              className="hover:text-blue-300"
             >
-              Careers
-            </Link>
+              Cookie Preferences
+            </button>
           </div>
-
-          <div>© {new Date().getFullYear()} Clik.ai. All rights reserved</div>
+          <div>© 2025 Clik.ai. All rights reserved</div>
         </div>
       </div>
     </footer>
