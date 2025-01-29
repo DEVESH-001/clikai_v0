@@ -196,7 +196,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 
           <div className="grid md:grid-cols-2 gap-6 items-start">
             <div>
-              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-violet-600">
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-1 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-violet-600">
                 {product.title}
               </h3>
               <p className="text-sm md:text-base lg:text-lg text-gray-600 mb-4">
@@ -299,7 +299,6 @@ export function ProductCards({}: ProductCardsProps) {
       </div>
 
       <div className="container mx-auto px-4 relative">
-
         <div className="text-center mb-8 md:mb-12">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -320,7 +319,7 @@ export function ProductCards({}: ProductCardsProps) {
           </motion.p>
         </div>
 
-        <div className="space-y-8 md:space-y-12 lg:space-y-16">
+        <div className="space-y-4 md:space-y-8 lg:space-y-12">
           {products.map((product, index) => (
             <ProductCard key={product.title} product={product} index={index} />
           ))}

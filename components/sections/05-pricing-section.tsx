@@ -278,27 +278,16 @@ export function PricingSection() {
             deals per month
           </p>
           <div className="relative py-4">
-            {/* New Slider */}
             <Slider
               value={[dealsPerMonth]}
               onValueChange={(value) => setDealsPerMonth(value[0])}
               max={40}
-              step={1}
-              className="relative z-10"
-              style={
-                {
-                  background: `linear-gradient(to right, #3b82f6 ${
-                    (dealsPerMonth / 40) * 100
-                  }%, #e5e7eb ${(dealsPerMonth / 40) * 100}%)`,
-                  height: "6px",
-                  borderRadius: "4px",
-                  "--thumb-bg": "#3b82f6",
-                } as React.CSSProperties
-              }
+              step={5}
+              className="relative z-10 [&_.slider-track]:h-2 [&_.slider-track]:bg-gray-200 [&_.slider-range]:bg-blue-500 [&_.slider-thumb]:bg-blue-500 [&_.slider-thumb]:border-2 [&_.slider-thumb]:border-black"
             />
           </div>
-          <div className="flex justify-between text-sm text-gray-600 px-1 mt-2 ">
-            {[0, 4, 10, 20, 30, 40].map((value) => (
+          <div className="flex justify-between text-sm text-gray-600 px-1 mt-2">
+            {[0, 5, 10, 20, 30, 40].map((value) => (
               <span
                 key={value}
                 className={`${
