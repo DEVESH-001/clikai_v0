@@ -288,7 +288,7 @@ export function PricingSection() {
 
         {/* Pricing Cards */}
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {plans.map((plan, ) => (
+          {plans.map((plan) => (
             <Card
               key={plan.name}
               className={`relative overflow-hidden flex flex-col w-full border ${
@@ -357,7 +357,7 @@ export function PricingSection() {
         </div>
 
         {/* Feature Comparison Table */}
-        <div className="mt-16 max-w-4xl mx-auto bg-white/90 shadow-lg rounded-lg overflow-hidden backdrop-blur-sm">
+        <div className="mt-16 max-w-8xl mx-auto bg-white/90 shadow-lg rounded-lg overflow-hidden backdrop-blur-sm">
           <Table>
             <TableHeader>
               <TableRow>

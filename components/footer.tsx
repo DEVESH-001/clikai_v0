@@ -4,15 +4,12 @@ import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-
 interface FooterProps {
   onOpenCookiePreferences: () => void;
 }
 
 // Main Footer component
 export function Footer({ onOpenCookiePreferences }: FooterProps) {
-
-
   return (
     <footer className="bg-[#001F3F] pt-8 sm:pt-12 md:pt-16 pb-6 sm:pb-8 text-white">
       <div className="container mx-auto px-4">
@@ -102,11 +99,6 @@ export function Footer({ onOpenCookiePreferences }: FooterProps) {
               <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-center md:text-left">
                 <li>
                   <Link href="#" className="text-gray-300 hover:text-blue-300">
-                    Loan Servicing & Administration
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-gray-300 hover:text-blue-300">
                     Financial Services & Analysis (FSA)
                   </Link>
                 </li>
@@ -117,12 +109,7 @@ export function Footer({ onOpenCookiePreferences }: FooterProps) {
                 </li>
                 <li>
                   <Link href="#" className="text-gray-300 hover:text-blue-300">
-                    Legacy Data Migration Services
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-gray-300 hover:text-blue-300">
-                    Deal Underwriting & Financial Modeling
+                    Loan On Boarding
                   </Link>
                 </li>
                 <li>
@@ -130,9 +117,6 @@ export function Footer({ onOpenCookiePreferences }: FooterProps) {
                     Cash Flow Modeling & Rent Roll Analysis
                   </Link>
                 </li>
-              </ul>
-              {/* Right Services Column */}
-              <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-center md:text-left">
                 <li>
                   <Link href="#" className="text-gray-300 hover:text-blue-300">
                     Underwriting & Due Diligence Support
@@ -143,11 +127,9 @@ export function Footer({ onOpenCookiePreferences }: FooterProps) {
                     Custom Financial Model Development
                   </Link>
                 </li>
-                <li>
-                  <Link href="#" className="text-gray-300 hover:text-blue-300">
-                    Lease & Data Administration
-                  </Link>
-                </li>
+              </ul>
+              {/* Right Services Column */}
+              <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-center md:text-left">
                 <li>
                   <Link href="#" className="text-gray-300 hover:text-blue-300">
                     Lease Abstraction & Audit
@@ -160,6 +142,30 @@ export function Footer({ onOpenCookiePreferences }: FooterProps) {
                 </li>
                 <li>
                   <Link href="#" className="text-gray-300 hover:text-blue-300">
+                    Legacy Data Migration
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/services/consulting/salesforce-customization"
+                    className="text-gray-300 hover:text-blue-300"
+                  >
+                    Salesforce Customisation & Integration
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/services/consulting/custom-reporting-dashboards"
+                    className="text-gray-300 hover:text-blue-300"
+                  >
+                    Custom Reporting & Dashboards
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/services/consulting/cre-technology-consulting"
+                    className="text-gray-300 hover:text-blue-300"
+                  >
                     CRE Technology Consulting
                   </Link>
                 </li>
@@ -168,11 +174,11 @@ export function Footer({ onOpenCookiePreferences }: FooterProps) {
           </div>
 
           {/* Resources Column */}
-          <div>
-            <h4 className="font-semibold mb-2 sm:mb-3 text-xs sm:text-sm md:text-base text-gray-300 text-center sm:text-left">
+          <div className="flex flex-col items-center">
+            <h4 className="font-semibold mb-2 sm:mb-3 text-xs sm:text-sm md:text-base text-gray-300 text-left">
               Resources
             </h4>
-            <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-center sm:text-left">
+            <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-left">
               <li>
                 <Link
                   href="https://clik-ai.gitbook.io/"

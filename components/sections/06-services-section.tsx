@@ -49,7 +49,7 @@ const services = [
         ],
       },
       {
-        title: "Legacy Data Migration",
+        title: "Loan On Boarding",
         tagline: "Seamless data modernization",
         description:
           "Migrate loan portfolios to modern platforms with AI-powered validation and error checks.",

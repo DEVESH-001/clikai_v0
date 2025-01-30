@@ -312,7 +312,7 @@ export function ProductCards({}: ProductCardsProps) {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-base md:text-lg lg:text-xl text-gray-700 max-w-3xl mx-auto"
+            className="text-base md:text-lg lg:text-xl text-gray-700  mx-auto"
           >
             Revolutionize your commercial real estate operations with our suite
             of cutting-edge AI technologies

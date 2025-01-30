@@ -540,7 +540,7 @@ export function HeroGraphs() {
   };
 
   return (
-    <div className="flex flex-col h-full w-full  space-y-1 relative z-10 rounded-lg">
+    <div className="flex flex-col h-full w-full relative z-10 rounded-lg">
       <AnimatePresence mode="wait">
         <motion.div
           key={JSON.stringify(data)}
@@ -548,10 +548,10 @@ export function HeroGraphs() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
-          className="grid grid-cols-1 gap-3 h-full"
+          className="grid grid-cols-1 gap-1 h-full"
         >
-          <Card className="shadow-lg rounded-[8px] overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl mb-2 bg-white/80 backdrop-blur-sm">
-            <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-2 ">
+          <Card className="shadow-lg rounded-[8px] overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl bg-white/80 backdrop-blur-sm">
+            <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-0.5">
               <CardTitle className="text-sm font-bold">
                 {topGraphIndex === 0 && "Monthly Revenue"}
                 {topGraphIndex === 1 && "Lease Expirations"}
@@ -560,14 +560,14 @@ export function HeroGraphs() {
                 {topGraphIndex === 4 && "Rent Roll Analysis"}
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-2 h-[200px] ">
+            <CardContent className="p-0.5 h-[160px]">
               {renderTopGraph()}
             </CardContent>
           </Card>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-1">
             <Card className="shadow-lg rounded-[8px] overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl bg-white/80 backdrop-blur-sm">
-              <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-2 ">
+              <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-0.5">
                 <CardTitle className="text-sm font-bold">
                   {bottomLeftGraphIndex === 0 && "Property Comparison Report"}
                   {bottomLeftGraphIndex === 1 && "NOI Trend"}
@@ -576,13 +576,13 @@ export function HeroGraphs() {
                   {bottomLeftGraphIndex === 4 && "Occupancy Status"}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-2 h-[180px]">
+              <CardContent className="p-0.5 h-[140px]">
                 {renderBottomGraph(bottomLeftGraphIndex)}
               </CardContent>
             </Card>
 
             <Card className="shadow-lg rounded-[8px] overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl bg-white/80 backdrop-blur-sm">
-              <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-2">
+              <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-0.5">
                 <CardTitle className="text-sm font-bold">
                   {bottomRightGraphIndex === 0 && "Property Comparison Report"}
                   {bottomRightGraphIndex === 1 && "NOI Trend"}
@@ -591,7 +591,7 @@ export function HeroGraphs() {
                   {bottomRightGraphIndex === 4 && "Occupancy Status"}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-2 h-[180px]">
+              <CardContent className="p-0.5 h-[140px]">
                 {renderBottomGraph(bottomRightGraphIndex)}
               </CardContent>
             </Card>
@@ -601,3 +601,4 @@ export function HeroGraphs() {
     </div>
   );
 }
+

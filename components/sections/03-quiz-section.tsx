@@ -200,7 +200,7 @@ export function QuizSection({ onProductRecommended }: QuizSectionProps) {
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
             Find Your Perfect Clik.ai Solution
           </h2>
-          <p className="text-base md:text-lg text-gray-700 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-gray-700  mx-auto">
             Answer a few questions to get personalized product recommendations
             tailored to your needs
           </p>

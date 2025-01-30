@@ -31,7 +31,7 @@ export function HeroSection() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-lg md:text-xl lg:text-2xl text-center lg:text-left mb-6 text-blue-800 max-w-2xl mx-auto lg:mx-0"
             >
-              Delivering smarter tools and expert support to transform the way
+              Delivering Smarter Tools and Expert support to transform the way
               CRE works
             </motion.p>
             <motion.div
@@ -48,7 +48,7 @@ export function HeroSection() {
               </Button>
             </motion.div>
           </div>
-          <div className="lg:w-2/5 w-full mt-8 lg:mt-0 mb-0">
+          <div className="lg:w-2/5 w-full mt-8 lg:mt-0">
             <HeroGraphs />
           </div>
         </div>
@@ -56,3 +56,5 @@ export function HeroSection() {
     </section>
   );
 }
+
+

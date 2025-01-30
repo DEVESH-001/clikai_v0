@@ -83,7 +83,7 @@ const services = [
         href: "/services/loan-servicing/disbursement",
       },
       {
-        title: "Legacy Data Migration Services",
+        title: "Loan On Boarding",
         description: "Seamless migration of historical data",
         href: "/services/loan-servicing/data-migration",
       },

@@ -282,27 +282,35 @@ export function PricingSection() {
               value={[dealsPerMonth]}
               onValueChange={(value) => setDealsPerMonth(value[0])}
               max={40}
-              step={5}
-              className="relative z-10 [&_.slider-track]:h-2 [&_.slider-track]:bg-gray-200 [&_.slider-range]:bg-blue-500 [&_.slider-thumb]:bg-blue-500 [&_.slider-thumb]:border-2 [&_.slider-thumb]:border-black"
+              step={1}
+              className="relative z-10 [&_.slider-track]:h-2 [&_.slider-track]:bg-gray-200 [&_.slider-range]:bg-blue-500 [&_.slider-thumb]:bg-blue-500 [&_.slider-thumb]:border-2 [&_.slider-thumb]:border-white"
             />
           </div>
-          <div className="flex justify-between text-sm text-gray-600 px-1 mt-2">
-            {[0, 5, 10, 20, 30, 40].map((value) => (
-              <span
+          <div className="flex relative px-1 mt-2">
+            {[0, 5, 10, 20, 30, 40 ].map((value) => (
+              <div
                 key={value}
-                className={`${
-                  value === dealsPerMonth ? "font-bold text-blue-600" : ""
-                }`}
+                className="absolute text-sm text-gray-600"
+                style={{
+                  left: `${(value / 40) * 100}%`,
+                  transform: "translateX(-50%)",
+                }}
               >
-                {value}
-              </span>
+                <span
+                  className={`${
+                    value === dealsPerMonth ? "font-bold text-blue-600" : ""
+                  }`}
+                >
+                  {value}
+                </span>
+              </div>
             ))}
           </div>
         </div>
 
         {/* Pricing Cards */}
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto ">
           {plans.map((plan) => (
             <Card
               key={plan.name}
@@ -310,7 +318,7 @@ export function PricingSection() {
                 highlightedPlan === plan.name
                   ? "border-4 border-blue-500 shadow-lg bg-white scale-105"
                   : "border border-blue-200 bg-white/80"
-              } transition-all duration-300 hover:shadow-xl backdrop-blur-sm`}
+              } transition-all duration-300 hover:shadow-xl backdrop-blur-sm mt-8` }
             >
               {/* Ribbon */}
               {plan.ribbon && (
