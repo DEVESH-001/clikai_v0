@@ -205,7 +205,8 @@ export function Footer({ onOpenCookiePreferences }: FooterProps) {
               </li>
               <li>
                 <Link
-                  href="/posts"
+                  // href="/posts"
+                  href="#"
                   className="text-gray-300 hover:text-blue-300"
                 >
                   Blog
